@@ -6,9 +6,9 @@
 </head>
 <body>
 <h1>
-	Hello world!  Git Test
+	Hello world!  Git Test ddd
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P>  The time on the server is ${serverTime}...... </P>
 </body>
 </html>
