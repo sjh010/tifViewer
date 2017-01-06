@@ -1,16 +1,27 @@
 package com.mobileleader.tifleader.controller;
 
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.mobileleader.tifleader.service.ConvertService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class MainController {
+	
+	@Inject
+	ConvertService convertService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -33,7 +44,14 @@ public class MainController {
 	
 	// 이미지 파일 업로드 및 다운로드
 	@RequestMapping(value="/combineAction", method=RequestMethod.POST)
-	public String combineAction(){
+	public String combineAction(@RequestParam("image") MultipartFile[] imageList,
+									HttpServletRequest request, Model model){
+		
+		String root = request.getSession().getServletContext().getRealPath("/");
+		
+		String filePath = convertService.imagesToTiff(imageList, root);
+		
+		model.addAttribute("filePath", filePath);
 		
 		return null;
 	}
