@@ -22,7 +22,6 @@ public class ConvertServiceImpl implements ConvertService {
 
 	@Override
 	public void tiffToImages() {
-		// TODO Auto-generated method stub
 		
 	}
 }
