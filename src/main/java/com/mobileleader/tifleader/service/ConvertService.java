@@ -6,5 +6,6 @@ public interface ConvertService {
 
 	public String imagesToTiff(String path, MultipartFile[] files);
 	
-	public void tiffToImages();
+	public String[] TiffToImage(MultipartFile tiff, String imageType);
+	
 }

@@ -3,7 +3,6 @@ package com.mobileleader.tifleader.controller;
 import java.io.File;
 
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,8 +20,7 @@ import com.mobileleader.tifleader.service.ConvertService;
 @Controller
 public class MainController {
 	
-	
-	ConvertService converService;
+	ConvertService convertService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -46,7 +44,7 @@ public class MainController {
 	@RequestMapping(value="/combineAction", method=RequestMethod.POST)
 	public ModelAndView combineAction(HttpSession session, MultipartFile[] files, Model model){
 		String path = session.getServletContext().getRealPath("/combine");
-		String tiffFilePath = converService.imagesToTiff(path, files).replace("\\", "/");
+		String tiffFilePath = convertService.imagesToTiff(path, files).replace("\\", "/");
 		File tiffFile = new File(tiffFilePath);
 		return new ModelAndView("download", "downloadFile", tiffFile);
 	}

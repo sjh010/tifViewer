@@ -21,7 +21,8 @@ public class ConvertServiceImpl implements ConvertService {
 	}
 
 	@Override
-	public void tiffToImages() {
-		
+	public String[] TiffToImage(MultipartFile tiff, String imageType) {
+		return null;
 	}
+
 }
