@@ -1,15 +1,10 @@
 package com.mobileleader.tifleader.service;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface ConvertService {
 
-	public void imagesToTiff();
+	public String imagesToTiff(String path, MultipartFile[] files);
 	
-	public void TiffToImage();
-	
-	public void download();
-	
-	
-	
-	
-	
+	public void tiffToImages();
 }

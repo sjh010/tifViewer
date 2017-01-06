@@ -1,5 +1,5 @@
 package com.mobileleader.tifleader.util;
 
-public interface ImageToTiff {
+public class TiffToImages{
 
 }
