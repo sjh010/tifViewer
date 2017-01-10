@@ -1,10 +1,8 @@
 package com.mobileleader.tifleader.service;
 
-import java.io.File;
-
+import java.util.ArrayList;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.mobileleader.tifleader.util.ImagesToTiff;
+import com.mobileleader.tifleader.util.ConvertUtil;
 
 public class ConvertServiceImpl implements ConvertService {
 
@@ -12,8 +10,7 @@ public class ConvertServiceImpl implements ConvertService {
 	public String imagesToTiff(String serverPath, MultipartFile[] imageList) {
 		String resultFilePath = "";
 		try {
-			File folderFile = ImagesToTiff.saveUploadImages(serverPath, imageList);
-			resultFilePath = ImagesToTiff.convertImagesToTiff(folderFile);
+			resultFilePath = ConvertUtil.combineTiffImage(serverPath, imageList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -21,8 +18,14 @@ public class ConvertServiceImpl implements ConvertService {
 	}
 
 	@Override
-	public String[] TiffToImage(MultipartFile tiff, String imageType) {
-		return null;
+	public ArrayList<String> TiffToImage(String serverPath, MultipartFile tiff, String imageType) {
+		ArrayList<String> resultFilePath = null;
+		try {
+			resultFilePath = ConvertUtil.divideTiffImage(serverPath, tiff, imageType);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultFilePath;
 	}
 
 }
