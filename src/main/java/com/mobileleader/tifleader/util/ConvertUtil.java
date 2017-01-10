@@ -49,9 +49,8 @@ public class ConvertUtil {
 	private static File saveUploadImages(String path, MultipartFile[] imageList) throws Exception {
 		String folderName = "" + System.currentTimeMillis();
 		File folderFile = new File(path + "/" + folderName);
-		File resultFolder = new File(folderFile, "result");
 		if (!folderFile.exists()) {
-			resultFolder.mkdirs();
+			folderFile.mkdirs();
 		}
 		if (imageList != null && imageList.length > 0) {
 			for (MultipartFile image : imageList) {
@@ -59,29 +58,26 @@ public class ConvertUtil {
 				image.transferTo(new File(folderFile, fileName));
 			}
 		}
-		if (!resultFolder.exists())
-			resultFolder.mkdir();
 		return folderFile;
 	}
 	
 	private static File saveUploadImages(String path, MultipartFile image) throws Exception {
 		String folderName = "" + System.currentTimeMillis();
 		File folderFile = new File(path + "/" + folderName);
-		File resultFolder = new File(folderFile, "result");
 		if (!folderFile.exists()) {
-			resultFolder.mkdirs();
+			folderFile.mkdirs();
 		}
 		if (image != null) {
 			String fileName = System.currentTimeMillis() + image.getOriginalFilename();
 			image.transferTo(new File(folderFile, fileName));
 		}
-		if (!resultFolder.exists())
-			resultFolder.mkdir();
 		return folderFile;
 	}
 
 	private static String convertImagesToTiff(File file) throws IOException {
 		File[] fileList = file.listFiles();
+		File resultFolder = new File(file.getAbsolutePath() + "/result");
+		if(!resultFolder.exists())resultFolder.mkdirs();
 		ArrayList<RenderedImage> list = new ArrayList<RenderedImage>();
 		for (int i = 0; i < fileList.length; i++) {
 			list.add(ImageIO.read(fileList[i]));
@@ -102,6 +98,7 @@ public class ConvertUtil {
 
 	private static ArrayList<String> readMultiPageTiff(File tiffFile, String fileFormat) throws IOException {
 		File resultFolder = new File(tiffFile.getParentFile().getAbsolutePath() + "/result");
+		if(!resultFolder.exists()) resultFolder.mkdirs();
 		SeekableStream ss = new FileSeekableStream(tiffFile);
 		ImageDecoder decoder = ImageCodec.createImageDecoder("TIFF", ss, null);
 		int numPages = decoder.getNumPages();
@@ -121,13 +118,9 @@ public class ConvertUtil {
 	}
 
 	private static File readTiffImage(File file) throws IOException {
-		File[] fileList = file.listFiles();
-		for (File temp : fileList) {
-			String fileName = temp.getName();
-			String operator = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
-			if (operator.equalsIgnoreCase("tif") || operator.equalsIgnoreCase("tiff")) {
-				return temp;
-			}
+		File[] fileList = file.listFiles(new TiffFileNameFilter());
+		if(fileList.length==1){
+			return fileList[0];
 		}
 		return null;
 	}
