@@ -19,6 +19,7 @@
 	font-weight: 15px;
 	text-align:center;
 }
+
 </style>
 </head>
 <body>
