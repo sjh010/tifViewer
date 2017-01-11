@@ -7,48 +7,51 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
-	src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+	src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
-$(function() {
-    $("#file").on('change', function(){
-        document.getElementById("imgUpload").style.display = "none";
-    	readURL(this);
-    });
+	$(function() {
+		$("#files").on(
+				'change',
+				function() {
+					//Get count of selected files
+					var countFiles = $(this)[0].files.length;
 
+					var imgPath = $(this)[0].value;
+					var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1)
+							.toLowerCase();
+					var image_holder = $("#image-holder");
+					image_holder.empty();
 
-function readURL(input) {
-    if (input.files.length>0) {
-    	var htmlCode = "";
-    	$.each(input.files, function(i, v){
-    		var reader = new FileReader();
-    	    reader.onload = function () {
-    	        //    $('#blah').attr('src', e.target.result);
-    	      reader.readAsDataURL(v);
-    	      var tempImage = new Image(); //drawImage 메서드에 넣기 위해 이미지 객체화
-    	        tempImage.src = reader.result; //data-uri를 이미지 객체에 주입
-    	        tempImage.onload = function() {
-    	            //리사이즈를 위해 캔버스 객체 생성
-    	            var canvas = document.createElement('canvas');
-    	            var canvasContext = canvas.getContext("2d");
-    	            
-    	            //캔버스 크기 설정
-    	            canvas.width = 100; //가로 100px
-    	            canvas.height = 100; //세로 100px
-    	            
-    	            //이미지를 캔버스에 그리기
-    	            canvasContext.drawImage(this, 0, 0, 100, 100);
-    	            //캔버스에 그린 이미지를 다시 data-uri 형태로 변환
-    	            var dataURI = canvas.toDataURL("image/jpeg");
-    	            
-    	            htmlCode += "<img src='"+dataURI +"' width='100'/>";
-    	        }
-    	    }
-    	});
-    	$("#previewArea").append(htmlCode);
-    }
-}
+					if (extn == "gif" || extn == "png" || extn == "jpg"
+							|| extn == "jpeg") {
+						if (typeof (FileReader) != "undefined") {
 
-});
+							//loop for each file selected for uploaded.
+							for (var i = 0; i < countFiles; i++) {
+
+								var reader = new FileReader();
+								reader.onload = function(e) {
+									$("<img />", {
+										"src" : e.target.result,
+										"class" : "thumb-image"
+									}).appendTo(image_holder);
+								}
+
+								image_holder.show();
+								reader.readAsDataURL($(this)[0].files[i]);
+							}
+
+						} else {
+							alert("This browser does not support FileReader.");
+						}
+					} else {
+						alert("Pls select only images");
+					}
+				});
+	});
+	function fileUpClick() {
+		$('#files').trigger('click');
+	}
 </script>
 
 <style>
@@ -70,13 +73,17 @@ section.backone {
 	position: relative;
 }
 
+.thumb-image{
+	display:inline-block;
+	width : 200px;
+}
 .imgUpload {
 	position: relative;
 	display: block;
 	height: 250px;
 	width: 880px;
 	margin: 100px 10px 50px 350px;
-	background-image: url('../resources/images/imgUploadBg.png');
+	background-image: url('resources/images/imgUploadBg.png');
 	background-size: 100% 100%;
 	text-align: center;
 }
@@ -115,17 +122,18 @@ section.backone {
 		<section class="backone"> <article>
 		<form name="imgUploadForm" action="combineAction" method="post"
 			enctype="multipart/form-data">
-			<input type="file" name="file" id="file" multiple="multiple" />
+			<input type="file" name="files" id="files" accept="image/*"
+				style="display: none;" multiple="multiple" />
 			<!-- style="display:none;" -->
 			<!--  <img id="blah" src="#" alt="your image" />-->
-			<div id="previewArea"></div>
-			<div id="imgUpload" class="imgUpload"
-				onclick=document.all.file.click()>
-				<div class="topText1">
-					<span class="imgDrop">여기에 이미지 드롭하기</span><br />
-				</div>
-				<div class="topText2">
-					<span class="imgSelect">파일선택</span>
+			<div id="image-holder">
+				<div id="imgUpload" class="imgUpload" onclick="fileUpClick();">
+					<div class="topText1">
+						<span class="imgDrop">여기에 이미지 드롭하기</span><br />
+					</div>
+					<div class="topText2">
+						<span class="imgSelect">파일선택</span>
+					</div>
 				</div>
 			</div>
 		</form>
