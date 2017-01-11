@@ -1,7 +1,9 @@
 package com.mobileleader.tifleader.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,8 +33,6 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main() {
-		
-		
 		return "main";
 	}
 	
@@ -42,31 +44,33 @@ public class MainController {
 	
 	// 이미지 파일 업로드 및 다운로드
 	@RequestMapping(value="/combineAction", method=RequestMethod.POST)
-	public ModelAndView combineAction(HttpSession session, MultipartFile[] files, Model model){
+	@ResponseBody
+	public String combineAction(HttpSession session, MultipartFile[] files, Model model){
 		String path = session.getServletContext().getRealPath("/combine");
 		String tiffFilePath = convertService.imagesToTiff(path, files).replace("\\", "/");
-		File tiffFile = new File(tiffFilePath);
-		return new ModelAndView("download", "downloadFile", tiffFile);
+		return tiffFilePath;
 	}
 	
 	// tiff 파일 업로드 페이지
 	@RequestMapping(value="divide", method=RequestMethod.GET)
 	public String divide(){
-		
 		return "divide";
 	}
 	
 	// tiff -> image 변환 및 뷰어 페이지 반환
 	@RequestMapping(value="divideAction", method=RequestMethod.POST)
-	public String divideAction(){
-		
+	public String divideAction(HttpSession session, MultipartFile file, @RequestParam(value="imageType") String imageType, Model model){
+		String path = session.getServletContext().getRealPath("/combine");
+		ArrayList<String> resultFilePaths = convertService.TiffToImage(path, file, imageType);
+		model.addAttribute("filePath", resultFilePaths);
 		return "viewer";
 	}
 	
 	@RequestMapping(value="download", method=RequestMethod.POST)
-	public String download(){
-		
-		return null;
+	public ModelAndView download(HttpServletRequest request){
+		String filePath = request.getParameter("filePath");
+		File tiffFile = new File(filePath);
+		return new ModelAndView("download", "downloadFile", tiffFile);
 	}
 	
 }
