@@ -75,13 +75,13 @@ section.backone {
 	<div class="content">
 		<section class="backone"> <article>
 		<div class="jpgToTif">
-			<a href="combine.do"><div class="topText1">
+			<a href="combine"><div class="topText1">
 					<span class="jpgToTifText">다수의 이미지를<br />TIF 파일로 변환
 					</span>
 				</div></a>
 		</div>
 		<div class="tifbg">
-			<a href="divide.do"><div class="topText2">
+			<a href="divide"><div class="topText2">
 					<span class="tifbgText">TIF 파일 업로드</span>
 				</div></a>
 		</div>

@@ -69,8 +69,8 @@ section.backone {
 	<div class="content">
 		<section class="backone">
 			<article>
-			<form name="imaUploadForm" method="post" enctype="multipart/form-data">
-				<input type="file" name="file" id="file" style="display:none;"/>
+			<form name="tifUploadForm" action="divideAction" method="post" enctype="multipart/form-data">
+				<input type="file" name="file" id="file" /><!--  style="display:none;" -->
 				<div class="tifUpload" onclick=document.all.file.click();>
 					<div class="topText1">
 						<span class="tifDrop">여기에 TIF 파일 드롭하기</span><br/>

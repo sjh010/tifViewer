@@ -68,8 +68,8 @@ section.backone {
 	<div class="content">
 		<section class="backone">
 			<article>
-			<form name="imaUploadForm" method="post" enctype="multipart/form-data">
-				<input type="file" name="file" id="file" style="display:none;"/>
+			<form name="imgUploadForm" action="combineAction" method="post" enctype="multipart/form-data">
+				<input type="file" name="file" id="file"  multiple="multiple"/> <!-- style="display:none;" -->
 				<div class="imgUpload" onclick=document.all.file.click();>
 					<div class="topText1">
 						<span class="imgDrop">여기에 이미지 드롭하기</span><br/>
