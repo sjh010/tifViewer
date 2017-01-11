@@ -28,7 +28,8 @@ section.backone {
 	display: block;
 	height: 300px;
 	width: 280px;
-	margin: 70px 10px 180px 615px;
+	margin: 70px 0px 180px 480px;
+	padding-right:0px;
 	float: left;
 	background-image: url('resources/images/combineBg.png');
 	background-size: 100% 100%;
@@ -39,7 +40,8 @@ section.backone {
 	display: block;
 	height: 300px;
 	width: 280px;
-	margin: 70px 615px 180px 10px;
+	margin: 70px 480px 180px 0px;
+	padding-left:0px;
 	float: right;
 	background-image: url('resources/images/divideBg.png');
 	background-size: 100% 100%;
