@@ -2,11 +2,16 @@ package com.mobileleader.tifleader.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mobileleader.tifleader.service.ConvertService;
@@ -24,6 +30,7 @@ import com.mobileleader.tifleader.service.ConvertService;
 @Controller
 public class MainController {
 	
+	@Autowired
 	ConvertService convertService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
@@ -48,6 +55,26 @@ public class MainController {
 	public String combineAction(HttpSession session, MultipartFile[] files, Model model){
 		String path = session.getServletContext().getRealPath("/combine");
 		String tiffFilePath = convertService.imagesToTiff(path, files).replace("\\", "/");
+		return tiffFilePath;
+	}
+	
+	//so jeong hwan : ajax test
+	@RequestMapping(value="/combineAction1", method=RequestMethod.POST)
+	@ResponseBody
+	public String convert(MultipartHttpServletRequest request, HttpSession session){
+	
+		Iterator<String> itr = request.getFileNames();
+		List<MultipartFile> fileList = new ArrayList<MultipartFile>();
+				
+		while(itr.hasNext()){
+			MultipartFile mpf = request.getFile(itr.next());
+			fileList.add(mpf);
+		}
+		MultipartFile[] mfileList= fileList.toArray(new MultipartFile[fileList.size()]);
+		
+		String path = session.getServletContext().getRealPath("/combine");
+		String tiffFilePath = convertService.imagesToTiff(path, mfileList).replace("\\", "/");
+		
 		return tiffFilePath;
 	}
 	

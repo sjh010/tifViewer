@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<!-- JQuery import -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="//oss.maxcdn.com/jquery.form/3.50/jquery.form.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#files").on(
@@ -52,6 +55,34 @@
 	function fileUpClick() {
 		$('#files').trigger('click');
 	}
+	
+	// ajax를 통해 file upload 후, tiff 파일 경로를 반환
+	$(document).ready(function() {
+        $('#submitBtn').click(function() {
+            var data = new FormData();
+            $.each($('#files')[0].files, function(i, file) {          
+                data.append('file-' + i, file);
+            });
+            $.ajax({
+                url: 'combineAction1',
+                type: "POST",
+                dataType: "text",
+                data: data,
+                // cache: false,
+                processData: false,
+                contentType: false,
+                success : function(responseData){
+                	console.log(responseData);
+                	// reponseData : Tiff 파일 경로
+                	// 경로를 통해 다운로드 수행
+   
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                	console.log("upload fail!");
+                }
+            });
+        });
+    });
 </script>
 
 <style>
@@ -120,9 +151,8 @@ section.backone {
 <body>
 	<div class="content">
 		<section class="backone"> <article>
-		<form name="imgUploadForm" action="combineAction" method="post"
-			enctype="multipart/form-data">
-			<input type="file" name="files" id="files" accept="image/*"
+		<form name="imgUploadForm" enctype="multipart/form-data">
+			<input type="file" name="file" id="files" accept="image/*"
 				style="display: none;" multiple="multiple" />
 			<!-- style="display:none;" -->
 			<!--  <img id="blah" src="#" alt="your image" />-->
@@ -136,7 +166,11 @@ section.backone {
 					</div>
 				</div>
 			</div>
+			
+			<!-- so jeong hwan : ajax test -->
+			<button type="button" id="submitBtn">변환테스트</button>
 		</form>
+		
 		</article> </section>
 	</div>
 </body>
