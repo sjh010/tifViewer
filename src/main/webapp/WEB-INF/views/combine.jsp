@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="default/header.jsp" />
 <html>
 <head>
@@ -13,20 +11,16 @@
 <script src="//oss.maxcdn.com/jquery.form/3.50/jquery.form.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#files").on(
-				'change',
-				function() {
+		$("#files").on('change', function() {
 					//Get count of selected files
 					var countFiles = $(this)[0].files.length;
 
 					var imgPath = $(this)[0].value;
-					var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1)
-							.toLowerCase();
+					var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
 					var image_holder = $("#image-holder");
 					image_holder.empty();
 
-					if (extn == "gif" || extn == "png" || extn == "jpg"
-							|| extn == "jpeg") {
+					if (extn == "gif" || extn == "png" || extn == "jpg"	|| extn == "jpeg") {
 						if (typeof (FileReader) != "undefined") {
 
 							//loop for each file selected for uploaded.
@@ -34,10 +28,7 @@
 
 								var reader = new FileReader();
 								reader.onload = function(e) {
-									$("<img />", {
-										"src" : e.target.result,
-										"class" : "thumb-image"
-									}).appendTo(image_holder);
+									$("<img />", {"src" : e.target.result, "class" : "thumb-image"}).appendTo(image_holder);
 								}
 
 								image_holder.show();
@@ -71,7 +62,6 @@
                 type: "POST",
                 dataType: "text",
                 data: data,
-                // cache: false,
                 processData: false,
                 contentType: false,
                 success : function(responseData){

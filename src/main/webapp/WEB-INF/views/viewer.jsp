@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="default/header.jsp" />
 <html>
 <head>
@@ -123,7 +122,7 @@ margin-bottom:20px;
 	color: green;
 }
 </style>
-
+<script type="text/javascript"	src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#nav a').mouseover(function(e) {
@@ -142,17 +141,12 @@ margin-bottom:20px;
 		<div id="wrap">
 			<div id="thumnail">
 					<ul id="nav">
-						<li><a href="resources/images/11.jpeg" class="active"><img
-								src="resources/images/11.jpeg" alt="" /></a></li>
-						<li><a href="resources/images/33.jpg"><img
-								src="resources/images/33.jpg" alt="" /></a></li>
-						<li><a href="resources/images/divideBg.png"><img
-								src="resources/images/divideBg.png" alt="" /></a></li>
-						<li><a href="resources/images/imgUploadBg.png"><img
-						src="resources/images/imgUploadBg.png" alt="" /></a></li>
+						<c:forEach var="item" items="${filePath }" >
+							<li><a href="<%=request.getContextPath()%>${item}"><img src="<%=request.getContextPath()%>${item}"/></a></li>
+						</c:forEach>
 					</ul>
 			</div>
-			<div id="window"><img src="resources/images/11.jpeg" alt="" />
+			<div id="window"><img src="<%=request.getContextPath()%>${filePath[0] }"/>
 				<div id="btn">
 					<span class="btnMain" id="btnMain"><a href="/">메인으로</a></span>
 					<span class="btnDown" id="btnDown"><a href="download">다운로드</a></span>

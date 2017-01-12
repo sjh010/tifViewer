@@ -25,7 +25,7 @@ public class ConvertServiceImpl implements ConvertService {
 	public ArrayList<String> TiffToImage(String serverPath, MultipartFile tiff, String imageType) {
 		ArrayList<String> resultFilePath = null;
 		try {
-			resultFilePath = ConvertUtil.divideTiffImage(serverPath, tiff, imageType);
+			resultFilePath = ConvertUtil.divideTiffImage( serverPath, tiff, imageType);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
