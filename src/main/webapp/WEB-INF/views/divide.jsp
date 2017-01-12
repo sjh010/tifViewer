@@ -30,7 +30,7 @@ section.backone {
 	height: 250px;
 	width: 880px;
 	margin: 100px 10px 50px 350px;
-	background-image: url('../resources/images/tifUploadBg.png');
+	background-image: url('resources/images/tifUploadBg.png');
 	background-size: 100% 100%;
 	text-align: center;
 }
@@ -69,16 +69,25 @@ section.backone {
 	<div class="content">
 		<section class="backone">
 			<article>
-			<form name="tifUploadForm" action="divideAction" method="post" enctype="multipart/form-data">
-				<input type="file" name="file" id="file" /><!--  style="display:none;" -->
-				<div class="tifUpload" onclick=document.all.file.click();>
-					<div class="topText1">
-						<span class="tifDrop">여기에 TIF 파일 드롭하기</span><br/>
+				<form name="tifUploadForm" action="divideAction" method="post" enctype="multipart/form-data">
+					<input type="file" name="file" id="file" /><!--  style="display:none;" -->
+					<div class="tifUpload" onclick=document.all.file.click();>
+						<div class="topText1">
+							<span class="tifDrop">여기에 TIF 파일 드롭하기</span><br/>
+						</div>
+						<div class="topText2">
+							<span class="tifSelect">파일선택</span>
+						</div>
 					</div>
-					<div class="topText2">
-						<span class="tifSelect">파일선택</span>
-					</div>
-				</div>
+					<input type="submit" id="submitBtn" value="분할">
+					<select name="imageType">
+    					<option value="">확장자 선택</option>
+    					<option value="png">png</option>
+    					<option value="jpg">jpg</option>
+    					<option value="gif">gif</option>
+					</select>
+				</form>
+				
 			</article>
 		</section>
 	</div>

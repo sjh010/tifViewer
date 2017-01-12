@@ -22,13 +22,15 @@ section.backone {
 	background-size: auto 100%;
 	height: 555px;
 	position: relative;
+	margin-top: 5%;
 }
 
 .jpgToTif {
 	display: block;
 	height: 300px;
 	width: 280px;
-	margin: 70px 0px 180px 480px;
+	/* margin: 70px 0px 180px 480px; */
+	margin-left: 30%;
 	padding-right:0px;
 	float: left;
 	background-image: url('resources/images/combineBg.png');
@@ -40,7 +42,8 @@ section.backone {
 	display: block;
 	height: 300px;
 	width: 280px;
-	margin: 70px 480px 180px 0px;
+	/* margin: 70px 480px 180px 0px; */
+	margin-right : 30%;
 	padding-left:0px;
 	float: right;
 	background-image: url('resources/images/divideBg.png');

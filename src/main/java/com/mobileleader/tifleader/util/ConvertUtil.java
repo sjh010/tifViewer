@@ -112,7 +112,7 @@ public class ConvertUtil {
 		
 		ArrayList<String> filePathArray = new ArrayList<String>();
 		for(File temp : resultFolder.listFiles()){
-			filePathArray.add(temp.getAbsolutePath());
+			filePathArray.add(temp.getAbsolutePath().replace("\\", "/"));
 		}
 		return filePathArray;
 	}
