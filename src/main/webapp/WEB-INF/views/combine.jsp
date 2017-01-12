@@ -6,10 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<!-- JQuery import -->
+<script type="text/javascript"	src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="sweetalert/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
 <script src="//oss.maxcdn.com/jquery.form/3.50/jquery.form.min.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -43,7 +43,7 @@
 								image_holder.show();
 								reader.readAsDataURL($(this)[0].files[i]);
 							}
-
+							  $("#submitBtn").show();
 						} else {
 							alert("This browser does not support FileReader.");
 						}
@@ -56,7 +56,10 @@
 		$('#files').trigger('click');
 	}
 	
-	// ajax를 통해 file upload 후, tiff 파일 경로를 반환
+	function download(){
+		$("#download").submit();
+	}
+	
 	$(document).ready(function() {
         $('#submitBtn').click(function() {
             var data = new FormData();
@@ -72,10 +75,10 @@
                 processData: false,
                 contentType: false,
                 success : function(responseData){
-                	console.log(responseData);
-                	// reponseData : Tiff 파일 경로
-                	// 경로를 통해 다운로드 수행
-   
+					   $("#filePath").val(responseData);
+					   swal("이미지 변환 완료", "업로드 하신 이미지의 변환에 성공했습니다.", "success");
+					   $("#submitBtn").hide();
+					   $("#downloadBtn").show();
                 },
                 error: function(jqXHR, textStatus, errorThrown){
                 	console.log("upload fail!");
@@ -151,6 +154,9 @@ section.backone {
 <body>
 	<div class="content">
 		<section class="backone"> <article>
+		<form id="download" action="download">
+			<input type="hidden" name="filePath" id="filePath"/>
+		</form>
 		<form name="imgUploadForm" enctype="multipart/form-data">
 			<input type="file" name="file" id="files" accept="image/*"
 				style="display: none;" multiple="multiple" />
@@ -167,8 +173,8 @@ section.backone {
 				</div>
 			</div>
 			
-			<!-- so jeong hwan : ajax test -->
-			<button type="button" id="submitBtn">변환테스트</button>
+			<button type="button" id="submitBtn" style="display:none;">변환하기</button>
+			<button type="button" id="downloadBtn" onclick="download();" style="display:none;">다운로드</button>
 		</form>
 		
 		</article> </section>

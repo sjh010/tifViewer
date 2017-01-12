@@ -93,7 +93,7 @@ public class MainController {
 		return "viewer";
 	}
 	
-	@RequestMapping(value="download", method=RequestMethod.POST)
+	@RequestMapping(value="download", method=RequestMethod.GET)
 	public ModelAndView download(HttpServletRequest request){
 		String filePath = request.getParameter("filePath");
 		File tiffFile = new File(filePath);
