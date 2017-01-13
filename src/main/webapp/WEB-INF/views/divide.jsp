@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="default/header.jsp" />
 <html>
 <head>
@@ -81,13 +79,11 @@ section.backone {
 					</div>
 					<input type="submit" id="submitBtn" value="분할">
 					<select name="imageType">
-    					<option value="">확장자 선택</option>
-    					<option value="png">png</option>
     					<option value="jpg">jpg</option>
+    					<option value="png">png</option>
     					<option value="gif">gif</option>
 					</select>
 				</form>
-				
 			</article>
 		</section>
 	</div>

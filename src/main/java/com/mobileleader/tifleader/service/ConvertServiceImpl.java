@@ -1,10 +1,12 @@
 package com.mobileleader.tifleader.service;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mobileleader.tifleader.util.CompressUtil;
 import com.mobileleader.tifleader.util.ConvertUtil;
 
 @Service
@@ -25,11 +27,16 @@ public class ConvertServiceImpl implements ConvertService {
 	public ArrayList<String> TiffToImage(String serverPath, MultipartFile tiff, String imageType) {
 		ArrayList<String> resultFilePath = null;
 		try {
-			resultFilePath = ConvertUtil.divideTiffImage(serverPath, tiff, imageType);
+			resultFilePath = ConvertUtil.divideTiffImage( serverPath, tiff, imageType);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return resultFilePath;
+	}
+
+	@Override
+	public File getZipFile(String path) {
+		return CompressUtil.compression(path);
 	}
 
 }

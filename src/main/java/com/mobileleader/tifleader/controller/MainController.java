@@ -54,6 +54,8 @@ public class MainController {
 	@ResponseBody
 	public String combineAction(HttpSession session, MultipartFile[] files, Model model){
 		String path = session.getServletContext().getRealPath("/combine");
+		File file = new File(path);
+		if(!file.exists()) file.mkdir();
 		String tiffFilePath = convertService.imagesToTiff(path, files).replace("\\", "/");
 		return tiffFilePath;
 	}
@@ -86,18 +88,12 @@ public class MainController {
 	
 	// tiff -> image 변환 및 뷰어 페이지 반환
 	@RequestMapping(value="divideAction", method=RequestMethod.POST)
-	public String divideAction(HttpSession session, MultipartFile file, @RequestParam(value="imageType") String imageType, Model model){
-		
-		System.out.println(file.getOriginalFilename());
-		System.out.println(file.getName());
-		System.out.println(imageType);
-		
-		String path = session.getServletContext().getRealPath("/combine");
+	public String divideAction(HttpServletRequest request, HttpSession session, MultipartFile file, @RequestParam(value="imageType") String imageType, Model model){
+		String path = session.getServletContext().getRealPath("/divide");
+		System.out.println(path);
+		File folder = new File(path);
+		if(!folder.exists()) folder.mkdir();
 		ArrayList<String> resultFilePaths = convertService.TiffToImage(path, file, imageType);
-		
-		for(String filepath : resultFilePaths){
-			System.out.println("filepath : " + filepath);
-		}
 		
 		model.addAttribute("filePath", resultFilePaths);
 		return "viewer";
@@ -108,6 +104,15 @@ public class MainController {
 		String filePath = request.getParameter("filePath");
 		File tiffFile = new File(filePath);
 		return new ModelAndView("download", "downloadFile", tiffFile);
+	}
+	
+	@RequestMapping(value="downloadZip", method=RequestMethod.GET)
+	public ModelAndView downloadDivide(HttpSession session, HttpServletRequest request){
+		String serverPath = session.getServletContext().getRealPath("/divide");
+		String filePath = request.getParameter("filePath");
+		String backPath = filePath.split("/divideImage/")[1];
+		File zipFile = convertService.getZipFile(serverPath +"/"+backPath);
+		return new ModelAndView("download", "downloadFile", zipFile);
 	}
 	
 }

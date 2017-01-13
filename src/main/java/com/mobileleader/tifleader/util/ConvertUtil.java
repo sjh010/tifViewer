@@ -36,12 +36,12 @@ public class ConvertUtil {
 		return convertImagesToTiff(folderFile);
 	}
 
-	public static ArrayList<String> divideTiffImage(String serverPath, MultipartFile tiffFile, String fileFormat) throws Exception {
+	public static ArrayList<String> divideTiffImage( String serverPath, MultipartFile tiffFile, String fileFormat) throws Exception {
 		ArrayList<String> resultFilePath = new ArrayList<String>();
 		File folderFile = saveUploadImages(serverPath, tiffFile);
 		File savedTiffFile = readTiffImage(folderFile);
 		if(savedTiffFile!=null){
-			resultFilePath = readMultiPageTiff(savedTiffFile, fileFormat);
+			resultFilePath = readMultiPageTiff( savedTiffFile, fileFormat);
 		}
 		return resultFilePath;
 	}
@@ -96,7 +96,7 @@ public class ConvertUtil {
 		return tiffFilePath;
 	}
 
-	private static ArrayList<String> readMultiPageTiff(File tiffFile, String fileFormat) throws IOException {
+	private static ArrayList<String> readMultiPageTiff( File tiffFile, String fileFormat) throws IOException {
 		File resultFolder = new File(tiffFile.getParentFile().getAbsolutePath() + "/result");
 		if(!resultFolder.exists()) resultFolder.mkdirs();
 		SeekableStream ss = new FileSeekableStream(tiffFile);
@@ -112,7 +112,13 @@ public class ConvertUtil {
 		
 		ArrayList<String> filePathArray = new ArrayList<String>();
 		for(File temp : resultFolder.listFiles()){
-			filePathArray.add(temp.getAbsolutePath().replace("\\", "/"));
+			String folder = temp.getAbsolutePath().replace("\\", "/");
+			String[] path = folder.split("/divide");
+			String backPath = path[1];
+			System.out.println(backPath);
+			String imgSrcPath = "/divideImage"+backPath;
+			System.out.println(imgSrcPath);
+			filePathArray.add(imgSrcPath);
 		}
 		return filePathArray;
 	}
