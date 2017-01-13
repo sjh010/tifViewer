@@ -12,7 +12,9 @@
 }
 
 .footer {
-	text-align: center;
+	height: 20%;
+	/* margin-top: 550px; */
+	text-align:center;
 }
 </style>
 </head>

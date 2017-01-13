@@ -10,10 +10,9 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 
 .header {
-	/* font-family: 'Hanna'; */
 	font-family: 'Nanum Gothic Coding';
 	font-weight:bold;
-	height: 100px;
+	height: 30%;
 	font-size: 100px;
 	margin-top: 100px;
 	font-weight: 15px;

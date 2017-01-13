@@ -12,15 +12,13 @@
 	font-family: 'Nanum Barun Gothic ', sans-serif ;
 }
 
-section article {
-	display: block;
-	position: relative;
-	top: 17px;
+body{
+	height: 80%;
 }
 
 section.backone {
 	background-size: auto 100%;
-	height: 555px;
+	height: 100%;
 	position: relative;
 	margin-top: 5%;
 }
@@ -68,17 +66,19 @@ section.backone {
 }
 
 .topText1 {
-	margin: 200px 0px 0px 0px;
+	/* margin: 200px 0px 0px 0px; */
+	margin-top: 75%;
 }
 
 .topText2 {
-	margin: 230px 0px 0px 0px;
+	/* margin: 230px 0px 0px 0px; */
+	margin-top: 80%;
 }
 </style>
 </head>
 <body>
 	<div class="content">
-		<section class="backone"> <article>
+		<section class="backone">
 		<div class="jpgToTif">
 			<a href="combine"><div class="topText1">
 					<span class="jpgToTifText">다수의 이미지를<br />TIF 파일로 변환
@@ -90,8 +90,8 @@ section.backone {
 					<span class="tifbgText">TIF 파일 업로드</span>
 				</div></a>
 		</div>
-		</article> </section>
+		</section>
 	</div>
 </body>
-</html>
 <jsp:include page="default/footer.jsp" />
+</html>

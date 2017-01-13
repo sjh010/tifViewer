@@ -90,27 +90,26 @@
 
 <style>
 * {@import
-	url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);font-family: 
-	 'Nanum Barun Gothic ', sans-serif ;
-	
+	url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
+	font-family: 'Nanum Barun Gothic', sans-serif ;
 }
 
-section article {
-	display: block;
-	position: relative;
-	top: 17px;
+body{
+	height: 50%;
 }
 
 section.backone {
 	background-size: auto 100%;
-	height: 455px;
+	height: 100%;
 	position: relative;
+	margin-top: 5%;
 }
 
 .thumb-image{
 	display:inline-block;
 	width : 200px;
 }
+
 .imgUpload {
 	position: relative;
 	display: block;
@@ -153,7 +152,7 @@ section.backone {
 </head>
 <body>
 	<div class="content">
-		<section class="backone"> <article>
+		<section class="backone">
 		<form id="download" action="download">
 			<input type="hidden" name="filePath" id="filePath"/>
 		</form>
@@ -176,8 +175,7 @@ section.backone {
 			<button type="button" id="submitBtn" style="display:none;">변환하기</button>
 			<button type="button" id="downloadBtn" onclick="download();" style="display:none;">다운로드</button>
 		</form>
-		
-		</article> </section>
+		</section>
 	</div>
 </body>
 </html>
