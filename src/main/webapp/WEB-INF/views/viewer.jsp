@@ -131,8 +131,13 @@ margin-bottom:20px;
 			$(this).addClass('active');
 			img_url = $(this).attr('href');
 			$('#window img').attr('src', img_url);
+			$('#filePath').val(img_url);
 		});
 	})
+	
+	function download(){
+		$("#downloadForm").submit();
+	}
 </script>
 </head>
 <body>
@@ -148,9 +153,12 @@ margin-bottom:20px;
 			</div>
 			<div id="window"><img src="<%=request.getContextPath()%>${filePath[0] }"/>
 				<div id="btn">
-					<span class="btnMain" id="btnMain"><a href="/">메인으로</a></span>
-					<span class="btnDown" id="btnDown"><a href="download">다운로드</a></span>
+					<span class="btnMain" id="btnMain"><a href="<%=request.getContextPath()%>/">메인으로</a></span>
+					<span class="btnDown" id="btnDown" onclick="download();"><a>다운로드</a></span>
 				</div>
+				<form action="downloadZip" method="get" id="downloadForm">
+					<input id="filePath" type="hidden" name="filePath"/>
+				</form>
 			</div>
 		</div>
 

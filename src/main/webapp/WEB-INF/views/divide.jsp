@@ -85,7 +85,6 @@ section.backone {
     					<option value="gif">gif</option>
 					</select>
 				</form>
-				
 			</article>
 		</section>
 	</div>

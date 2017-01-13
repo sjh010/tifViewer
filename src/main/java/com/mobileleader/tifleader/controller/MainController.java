@@ -106,4 +106,13 @@ public class MainController {
 		return new ModelAndView("download", "downloadFile", tiffFile);
 	}
 	
+	@RequestMapping(value="downloadZip", method=RequestMethod.GET)
+	public ModelAndView downloadDivide(HttpSession session, HttpServletRequest request){
+		String serverPath = session.getServletContext().getRealPath("/divide");
+		String filePath = request.getParameter("filePath");
+		String backPath = filePath.split("/divideImage/")[1];
+		File zipFile = convertService.getZipFile(serverPath +"/"+backPath);
+		return new ModelAndView("download", "downloadFile", zipFile);
+	}
+	
 }
