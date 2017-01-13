@@ -157,7 +157,7 @@ margin-bottom:20px;
 					<span class="btnDown" id="btnDown" onclick="download();"><a>다운로드</a></span>
 				</div>
 				<form action="downloadZip" method="get" id="downloadForm">
-					<input id="filePath" type="hidden" name="filePath"/>
+					<input id="filePath" type="hidden" value="<%=request.getContextPath()%>${filePath[0] }" name="filePath"/>
 				</form>
 			</div>
 		</div>

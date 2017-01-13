@@ -79,9 +79,8 @@ section.backone {
 					</div>
 					<input type="submit" id="submitBtn" value="분할">
 					<select name="imageType">
-    					<option value="">확장자 선택</option>
-    					<option value="png">png</option>
     					<option value="jpg">jpg</option>
+    					<option value="png">png</option>
     					<option value="gif">gif</option>
 					</select>
 				</form>
