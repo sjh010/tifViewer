@@ -17,9 +17,10 @@
 
 					var imgPath = $(this)[0].value;
 					var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
-					var image_holder = $("#image-holder");
-					image_holder.empty();
-
+					var image_area = $("#imagesArea");		
+					var upload_area = $("#imgUpload");
+					upload_area.hide();
+					
 					if (extn == "gif" || extn == "png" || extn == "jpg"	|| extn == "jpeg") {
 						if (typeof (FileReader) != "undefined") {
 
@@ -28,10 +29,12 @@
 
 								var reader = new FileReader();
 								reader.onload = function(e) {
-									$("<img />", {"src" : e.target.result, "class" : "thumb-image"}).appendTo(image_holder);
+									//$("<img />", {"src" : e.target.result, "class" : "thumb-image"}).appendTo(image_holder);
+									var htmlCode = "<img src='"+ e.target.result + "' class='thumb-image' />";
+									image_area.append(htmlCode);
 								}
 
-								image_holder.show();
+								image_area.show();
 								reader.readAsDataURL($(this)[0].files[i]);
 							}
 							  $("#submitBtn").show();
@@ -69,7 +72,6 @@
 					   swal("이미지 변환 완료", "업로드 하신 이미지의 변환에 성공했습니다.", "success");
 					   $("#submitBtn").hide();
 					   $("#downloadBtn").show();
-					   $("#mainBtn").show();
                 },
                 error: function(jqXHR, textStatus, errorThrown){
                 	console.log("upload fail!");
@@ -95,11 +97,12 @@ html{
 }
 
 .content{
-height: 60%;
+height: auto;
  margin:0 0 -5px 0;
 }
 
 .footerdiv {
+	margin-top:5%;
 	margin-left: 17%;
 	height:5px
 }
@@ -112,7 +115,7 @@ section.backone {
 }
 
 .thumb-image{
-	display:inline-block;
+	/*display:inline-block;*/
 	/* width : 200px; */
 	max-height:200px;
 	height:expression(this.height>300 ? 300:true);
@@ -122,15 +125,29 @@ section.backone {
 #image-holder{
 width: 100%;
 margin : 0 auto;
-table:table-cell;
+display:table;
 vertical-align:middle;
-}
+} 
 
-.thumb-image img{
+/*#image-holder { display:table; }*/
+.imgLayer {
+		display:table-cell;
+		text-align:center;
+		vertical-align:middle;
+		line-height:0;
+		max-height:200px;
+		height:expression(this.height>300 ? 300:true);
+		width:auto;
+		border:1px solid #222222;
+		overflow:hidden;
+	}
+
+
+ .thumb-image img{
 /* width:100%;*/
 margin : 0 auto;
 display:block;
-}
+} 
 
 .imgUpload {
 	position: relative;
@@ -172,9 +189,19 @@ display:block;
 	right: 400px;
 }
 
-.btnBox{
+/* .btnBox button : not(.submitBtn){
+margin-left: 30%;
+margin-top:1%;
+}
+
+#submitBtn{
 margin-left: 45%;
-margin-top:3%;
+margin-top:1%;
+} */
+
+.btnBox button{
+margin-left: 45%;
+margin-top:1%;
 }
 
 /* 버튼 css */
@@ -192,11 +219,14 @@ margin-top:3%;
   outline:none;
   border-radius: 40px;
 }
+
 .btnBox button:hover{
   background:#fff;
   border : 3px solid #8CD4F5;
   color:#8CD4F5;
 }
+
+
 
 </style>
 </head>
@@ -212,6 +242,7 @@ margin-top:3%;
 			<!-- style="display:none;" -->
 			<!--  <img id="blah" src="#" alt="your image" />-->
 			<div id="image-holder">
+				<p id="imagesArea" style="text-align: center; display:none;" >
 				<div id="imgUpload" class="imgUpload" onclick="fileUpClick();">
 					<div class="topText1">
 						<span class="imgDrop">여기에 이미지 드롭하기</span><br />
@@ -222,9 +253,9 @@ margin-top:3%;
 				</div>
 			</div>
 			<div class="btnBox">
-			<button type="button" id="submitBtn" style="display:none;">Convert</button>
-			<button type="button" id="downloadBtn" onclick="download();" style="display:none;">Download</button>
-			<a href="/tif"><button type="button" id="mainBtn" style="display:none;">Main</button></a>
+			<button type="button" id="submitBtn" class="submitBtn" style="display:none;">Convert</button>
+			<button type="button" id="downloadBtn" onclick="download();" style="display:none; ">Download</button>
+			<!-- <a href="/tif"><button type="button" id="mainBtn" style="float:right; margin-right:10%;" >Main</button></a> --><!-- style="display:none;" -->
 			</div>
 		</form>
 		</section>

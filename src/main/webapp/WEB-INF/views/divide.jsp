@@ -4,6 +4,57 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript"	src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="sweetalert/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
+<script type="text/javascript">
+	$(function() {
+		$("#file").on('change', function() {
+					//Get count of selected files
+					var countFiles = $(this)[0].files.length;
+					var imgPath = $(this)[0].value;
+					if(countFiles > 0){
+						var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();						
+						if(extn=="tif"||extn=="tiff"){
+							swal({
+							  title: "파일 분할",
+							  text: "올리신 Tiff 파일을 분할하시겠습니까?",
+							  type: "info",
+							  showCancelButton: true,
+							  cancelButtonText : "취소",
+							  confirmButtonText: "확인",
+							  closeOnConfirm: false
+							},
+							function(){
+								swal({
+									  title: "확장자 선택",
+									  text: "변환하실 확장자를 입력해주세요 (JPG / PNG / GIF)",
+									  type: "input",
+									  showCancelButton: true,
+									  closeOnConfirm: false,
+									  animation: "slide-from-top",
+									  inputPlaceholder: "확장자를 입력해주세요."
+									},
+									function(inputValue){
+									  	if (inputValue == false) return false;
+									  	var input = inputValue.toLowerCase();
+									 	if (input == "jpg" || input== "png" || input=="gif") {
+									    	$("#imageType").val(input);
+									    	$("#tifForm").submit();
+									    	return true;
+									  	}else{
+										  	swal.showInputError("지원하지 않는 확장자입니다.");
+										  	return false;
+									  	}
+									});
+							});
+						}else{
+							swal("이미지 타입 오류", "해당 기능은 Tiff 형식만 지원합니다.","error");
+						}
+					}
+		});
+	});
+</script>
 <style>
 * {
 	@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
@@ -175,7 +226,7 @@ margin-top:3%;
 <body>
 	<div class="content">
 		<section class="backone">
-				<form name="tifUploadForm" action="divideAction" method="post" enctype="multipart/form-data">
+				<form id="tifForm"name="tifUploadForm" action="divideAction" method="post" enctype="multipart/form-data">
 					<input type="file" name="file" id="file" accept="image/tiff" style="display:none;"/><!--  style="display:none;" -->
 					<div class="tifUpload" onclick=document.all.file.click();>
 						<div class="topText1">
@@ -186,14 +237,8 @@ margin-top:3%;
 						</div>
 					</div>
 					<div class="btnBox">
-					<input type="submit" id="submitBtn" value="분할">
 					<div id="selectBox">
-					<select name="imageType">
-					<option selected>확장자 선택</option>
-    					<option value="jpg">jpg</option>
-    					<option value="png">png</option>
-    					<option value="gif">gif</option>
-					</select>
+					<input id="imageType" name="imageType" type="hidden" value="jpg"/>
 					</div>
 					</div>
 				</form>
