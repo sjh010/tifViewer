@@ -113,7 +113,23 @@ section.backone {
 
 .thumb-image{
 	display:inline-block;
-	width : 200px;
+	/* width : 200px; */
+	max-height:200px;
+	height:expression(this.height>300 ? 300:true);
+	width:auto;
+}
+
+#image-holder{
+width: 100%;
+margin : 0 auto;
+table:table-cell;
+vertical-align:middle;
+}
+
+.thumb-image img{
+/* width:100%;*/
+margin : 0 auto;
+display:block;
 }
 
 .imgUpload {
@@ -154,6 +170,11 @@ section.backone {
 	position: absolute;
 	bottom: 30px;
 	right: 400px;
+}
+
+.btnBox{
+margin-left: 45%;
+margin-top:3%;
 }
 
 /* 버튼 css */
