@@ -12,16 +12,19 @@
 	
 }
 
-section article {
-	display: block;
-	position: relative;
-	top: 17px;
+html{
+	height: 100%;
+}
+
+body{
+	height: 80%;
 }
 
 section.backone {
 	background-size: auto 100%;
-	height: 525px;
+	height: 100%;
 	position: relative;
+	margin-top: 5%;
 }
 
 /* 썸네일 */
@@ -164,6 +167,9 @@ margin-bottom:20px;
 
 		</article> </section>
 	</div>
+	<!-- footer  -->
+	<div class="footerdiv">
+	<jsp:include page="default/footer.jsp" />
+	</div>
 </body>
 </html>
-<jsp:include page="default/footer.jsp" />

@@ -84,8 +84,17 @@
 	font-family: 'Nanum Barun Gothic', sans-serif ;
 }
 
+html{
+	height: 100%;
+}
+
 body{
-	height: 50%;
+	height: 80%;
+}
+
+.footerdiv{
+/* bottom:10%; */
+margin : 0 auto;
 }
 
 section.backone {
@@ -138,6 +147,28 @@ section.backone {
 	bottom: 30px;
 	right: 400px;
 }
+
+/* 버튼 css */
+
+.btnBox button{
+  background:#8CD4F5;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  border-radius: 40px;
+}
+.btnBox button:hover{
+  background:#fff;
+  border : 3px solid #8CD4F5;
+  color:#8CD4F5;
+}
+
 </style>
 </head>
 <body>
@@ -161,12 +192,17 @@ section.backone {
 					</div>
 				</div>
 			</div>
-			
-			<button type="button" id="submitBtn" style="display:none;">변환하기</button>
-			<button type="button" id="downloadBtn" onclick="download();" style="display:none;">다운로드</button>
+			<div class="btnBox">
+			<button type="button" id="submitBtn" style="display:none;">Convert</button>
+			<button type="button" id="downloadBtn" onclick="download();" style="display:none;">Download</button>
+			<a href="/tif"><button type="button" id="mainBtn" style="display:none;">Main</button></a>
+			</div>
 		</form>
 		</section>
 	</div>
+	<!-- footer  -->
+	<div class="footerdiv">
+	<jsp:include page="default/footer.jsp" />
+	</div>
 </body>
 </html>
-<jsp:include page="default/footer.jsp" />

@@ -10,8 +10,17 @@
 	font-family: 'Nanum Barun Gothic ', sans-serif ;
 }
 
+html{
+	height: 100%;
+}
+
 body{
 	height: 80%;
+}
+
+.footerdiv{
+/* bottom:10%; */
+margin : 0 auto;
 }
 
 section.backone {
@@ -90,6 +99,9 @@ section.backone {
 		</div>
 		</section>
 	</div>
+	<!-- footer  -->
+	<div class="footerdiv">
+	<jsp:include page="default/footer.jsp" />
+	</div>
 </body>
-<jsp:include page="default/footer.jsp" />
 </html>

@@ -12,7 +12,7 @@
 .header {
 	font-family: 'Nanum Gothic Coding';
 	font-weight:bold;
-	height: 30%;
+	height: 20%;
 	font-size: 100px;
 	margin-top: 100px;
 	font-weight: 15px;
