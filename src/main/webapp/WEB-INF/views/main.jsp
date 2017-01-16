@@ -19,7 +19,6 @@ body{
 }
 
 .footerdiv{
-/* bottom:10%; */
 margin : 0 auto;
 }
 
@@ -28,6 +27,10 @@ section.backone {
 	height: 100%;
 	position: relative;
 	margin-top: 5%;
+}
+
+.uploadImgBox{
+margin : 0 auto;
 }
 
 .jpgToTif {
@@ -86,6 +89,7 @@ section.backone {
 <body>
 	<div class="content">
 		<section class="backone">
+		<div class="uploadImgBox">
 		<div class="jpgToTif">
 			<a href="combine"><div class="topText1">
 					<span class="jpgToTifText">다수의 이미지를<br />TIF 파일로 변환
@@ -96,6 +100,7 @@ section.backone {
 			<a href="divide"><div class="topText2">
 					<span class="tifbgText">TIF 파일 업로드</span>
 				</div></a>
+		</div>
 		</div>
 		</section>
 	</div>
