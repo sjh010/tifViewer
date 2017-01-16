@@ -11,18 +11,19 @@
 	font-family: 'Nanum Barun Gothic ', sans-serif ;
 }
 
-.footer {
+body .footer {
 	height: 20%;
 	/* margin-top: 550px; */
 	text-align:center;
-/* 	margin : 0 auto; */
+	width:100%;
+ 	margin : 0 auto;
 }
 </style>
 </head>
 <body>
-	<div class="footer" style="width:100%">
+	<div class="footer">
 				 <p class="logo" style="width:96px; float:left"><img src="resources/images/footer_logo.PNG" alt="footer" /></p>
-				 <p class="address" style="width:50%; float:left">
+				 <p class="address" style="width:55%; float:left">
 				 	(06252) 서울시 강남구 강남대로 330 5층 (역삼동, 우덕빌딩) <br/>
 				 	<span>Tel. (02) 2051-4151 / Fax. (02) 3454-1100  / 
 				 Email. mobileleader@mobileleader.com<br/> Copyright ⓒ 2012 Mobileleader. All rights reserved</span></p>

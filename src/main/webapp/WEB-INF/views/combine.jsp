@@ -69,6 +69,7 @@
 					   swal("이미지 변환 완료", "업로드 하신 이미지의 변환에 성공했습니다.", "success");
 					   $("#submitBtn").hide();
 					   $("#downloadBtn").show();
+					   $("#mainBtn").show();
                 },
                 error: function(jqXHR, textStatus, errorThrown){
                 	console.log("upload fail!");
@@ -88,13 +89,19 @@ html{
 	height: 100%;
 }
 
-body{
+ body {
 	height: 80%;
+	margin:0;
 }
 
-.footerdiv{
-/* bottom:10%; */
-margin : 0 auto;
+.content{
+height: 60%;
+ margin:0 0 -5px 0;
+}
+
+.footerdiv {
+	margin-left: 17%;
+	height:5px
 }
 
 section.backone {
@@ -114,7 +121,8 @@ section.backone {
 	display: block;
 	height: 250px;
 	width: 880px;
-	margin: 100px 10px 50px 350px;
+	/* margin: 100px 10px 50px 350px; */
+	margin : 0 auto;
 	background-image: url('resources/images/imgUploadBg.png');
 	background-size: 100% 100%;
 	text-align: center;

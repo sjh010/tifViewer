@@ -1,36 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <jsp:include page="default/header.jsp" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-* {
-@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
-	font-family: 'Nanum Barun Gothic ', sans-serif ;
+* {@import
+	url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);font-family: 
+	'Nanum Barun Gothic ', sans-serif ;
 }
 
 html{
 	height: 100%;
 }
 
-body{
+body {
 	height: 80%;
+	margin:0;
 }
 
-.footerdiv{
-margin : 0 auto;
+.content{
+height: 60%;
+ margin:0 0 -5px 0;
+}
+
+.footerdiv {
+	/* margin-top:15%; */
+	margin-left: 17%;
+	height:5px
 }
 
 section.backone {
 	background-size: auto 100%;
-	height: 100%;
+	/* height: 80%; */
+	/* min-height:100%;
+	height:auto; */
 	position: relative;
 	margin-top: 5%;
 }
 
-.uploadImgBox{
-margin : 0 auto;
+section.uploadImgBox {
+	margin: 0 auto;
+	/* height: 50%; */
+	/* width: 100%; */
 }
 
 .jpgToTif {
@@ -39,7 +52,7 @@ margin : 0 auto;
 	width: 280px;
 	/* margin: 70px 0px 180px 480px; */
 	margin-left: 30%;
-	padding-right:0px;
+	padding-right: 0px;
 	float: left;
 	background-image: url('resources/images/combineBg.png');
 	background-size: 100% 100%;
@@ -51,8 +64,8 @@ margin : 0 auto;
 	height: 300px;
 	width: 280px;
 	/* margin: 70px 480px 180px 0px; */
-	margin-right : 30%;
-	padding-left:0px;
+	margin-right: 30%;
+	padding-left: 0px;
 	float: right;
 	background-image: url('resources/images/divideBg.png');
 	background-size: 100% 100%;
@@ -89,24 +102,19 @@ margin : 0 auto;
 <body>
 	<div class="content">
 		<section class="backone">
-		<div class="uploadImgBox">
-		<div class="jpgToTif">
-			<a href="combine"><div class="topText1">
-					<span class="jpgToTifText">다수의 이미지를<br />TIF 파일로 변환
-					</span>
-				</div></a>
-		</div>
-		<div class="tifbg">
-			<a href="divide"><div class="topText2">
-					<span class="tifbgText">TIF 파일 업로드</span>
-				</div></a>
-		</div>
-		</div>
+			<div class="uploadImgBox">
+				<div class="jpgToTif">
+					<a href="combine"><div class="topText1"><span class="jpgToTifText">다수의 이미지를<br/>TIF 파일로 변환</span></div></a>
+				</div>
+				<div class="tifbg">
+					<a href="divide"><div class="topText2"><span class="tifbgText">TIF 파일 업로드</span></div></a>
+				</div>
+			</div>
 		</section>
 	</div>
 	<!-- footer  -->
 	<div class="footerdiv">
-	<jsp:include page="default/footer.jsp" />
+		<jsp:include page="default/footer.jsp" />
 	</div>
 </body>
 </html>

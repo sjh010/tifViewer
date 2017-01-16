@@ -19,6 +19,10 @@
 	text-align:center;
 }
 
+a{
+text-decoration:none;
+}
+
 </style>
 </head>
 <body>

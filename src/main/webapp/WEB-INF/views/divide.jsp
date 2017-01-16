@@ -15,11 +15,18 @@ html {
 
 body {
 	height: 80%;
+	margin:0;
 }
-section article {
-	display: block;
-	position: relative;
-	top: 17px;
+
+.content{
+height: 60%;
+ margin:0 0 -5px 0;
+}
+
+.footerdiv {
+	/* margin-top:15%; */
+	margin-left: 17%;
+	height:5px
 }
 
 section.backone {
@@ -67,6 +74,11 @@ section.backone {
 	position:absolute;
 	bottom:30px;
 	right:400px;
+}
+
+.btnBox{
+margin-left: 40%;
+margin-top:3%;
 }
 
 /* 버튼 css */
@@ -164,7 +176,7 @@ section.backone {
 	<div class="content">
 		<section class="backone">
 				<form name="tifUploadForm" action="divideAction" method="post" enctype="multipart/form-data">
-					<input type="file" name="file" id="file" /><!--  style="display:none;" -->
+					<input type="file" name="file" id="files" style="display:none;"/>
 					<div class="tifUpload" onclick=document.all.file.click();>
 						<div class="topText1">
 							<span class="tifDrop">여기에 TIF 파일 드롭하기</span><br/>
@@ -173,13 +185,17 @@ section.backone {
 							<span class="tifSelect">파일선택</span>
 						</div>
 					</div>
+					<div class="btnBox">
 					<input type="submit" id="submitBtn" value="분할">
+					<div id="selectBox">
 					<select name="imageType">
 					<option selected>확장자 선택</option>
     					<option value="jpg">jpg</option>
     					<option value="png">png</option>
     					<option value="gif">gif</option>
 					</select>
+					</div>
+					</div>
 				</form>
 		</section>
 	</div>
