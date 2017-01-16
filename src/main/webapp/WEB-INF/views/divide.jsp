@@ -5,7 +5,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"	src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="sweetalert/sweetalert.min.js"></script>
+<script src="resources/modal/jquery.simplemodal.js"></script>
 <link rel="stylesheet" type="text/css" href="sweetalert/sweetalert.css">
 <script type="text/javascript">
 	$(function() {
@@ -23,10 +25,10 @@
 							  showCancelButton: true,
 							  cancelButtonText : "취소",
 							  confirmButtonText: "확인",
-							  closeOnConfirm: false
+							  closeOnConfirm: true
 							},
 							function(){
-								swal({
+								/* swal({
 									  title: "확장자 선택",
 									  text: "변환하실 확장자를 입력해주세요 (JPG / PNG / GIF)",
 									  type: "input",
@@ -46,7 +48,20 @@
 										  	swal.showInputError("지원하지 않는 확장자입니다.");
 										  	return false;
 									  	}
-									});
+									});*/
+								$("#modal_content").modal();
+								$("#m_close").click(function(){
+									  $.modal.close();
+								});
+								$("#m_confirm").click(function(inputValue){
+									  	if (inputValue == false) return false;
+									  	var input = inputValue.toLowerCase();
+									 	if (input == "jpg" || input== "png" || input=="gif") {
+									    	$("#imageType").val(input);
+									    	$("#tifForm").submit();
+									    	return true;
+									  	}
+								});
 							});
 						}else{
 							swal("이미지 타입 오류", "해당 기능은 Tiff 형식만 지원합니다.","error");
@@ -54,8 +69,43 @@
 					}
 		});
 	});
+	
+	/* $(document).ready(function(){
+		 $("#open").click(function(){
+		  $("#modal_content").modal(); 
+		 });
+		 $("#m_close").click(function(){
+		  $.modal.close();
+		 });
+	}); */
 </script>
 <style>
+#simplemodal-overlay {
+background-color:#000;
+}
+
+#modal_content{
+display:none;
+margin:0 auto;
+padding-top:1%;
+width:400px;
+height:300px;
+background:white;
+color:black;
+text-align:center;
+border-radius: 15px;
+}
+
+.modalBtn button{
+width:98px;
+height:60px;
+color:#fff;
+/* font-size:1.6em; */
+border:none;
+border-radius: 5px;
+cursor:pointer;
+}
+
 * {
 	@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
 	font-family: 'Nanum Barun Gothic ', sans-serif;
@@ -179,47 +229,7 @@ margin-top:3%;
 	transition: 800ms ease all;
 }
 
-/* select css */
-#selectBox:after {
-	/* content: '<>';
-  font: 17px "Consolas", monospace;
-  color: #333;
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-  right:11px; */
-	/*Adjust for position however you want*/
-	top: 18px;
-	padding: 0 0 2px;
-	border-bottom: 1px solid #999;
-	/*left line */
-	position: absolute;
-	pointer-events: none;
-}
 
-#selectBox select {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	/* Add some styling */
-	display: block;
-	width: 15%;
-	max-width: 320px;
-	height: 50px;
-	/* float: right;
-  margin: 5px 0px; */
-	/* margin:0 auto; */
-	padding: 0px 24px;
-	font-size: 16px;
-	line-height: 1.75;
-	color: #333;
-	background-color: #ffffff;
-	background-image: none;
-	border: 1px solid #cccccc;
-	-ms-word-break: normal;
-	word-break: normal;
-}
 
 </style>
 </head>
@@ -237,11 +247,12 @@ margin-top:3%;
 						</div>
 					</div>
 					<div class="btnBox">
-					<div id="selectBox">
+					<!-- <div id="selectBox">
 					<input id="imageType" name="imageType" type="hidden" value="jpg"/>
-					</div>
+					</div> -->
 					</div>
 				</form>
+				<!-- <div id="mo_content">모달팝업 테스트<input type="button" value="팝업" id="open"></div> -->
 		</section>
 	</div>
 	<!-- footer  -->
@@ -250,3 +261,19 @@ margin-top:3%;
 	</div>
 </body>
 </html>
+
+<!-- modal content -->
+<div id="modal_content">
+	<div id="selectBox" style="margin-top:10%;">
+		<div class="modal_text" style=" margin-top:10%;"><h2>확장자 선택</h2><br/>변환하실 확장자를 선택해주세요.</div>
+		<select name="imageType" style="height:45px; width:80%; margin:15px auto 0px auto;">
+			<option value="jpg">jpg</option>
+			<option value="png">png</option>
+			<option value="gif">gif</option>
+		</select>
+	</div>
+	<div class="modalBtn" style="width:100%; margin:15px auto;">
+	<button type="button" id="m_close" style="background-color:#CDCED0;">Cancel</button>
+	<button type="button" id="m_confirm" style="background-color:#8CD4F5;">OK</button>
+	</div>
+</div>
