@@ -242,7 +242,9 @@ margin-top:3%;
 	transition: 800ms ease all;
 }
 
-
+#selectBox select {
+font-size:20px;
+}
 
 </style>
 </head>
