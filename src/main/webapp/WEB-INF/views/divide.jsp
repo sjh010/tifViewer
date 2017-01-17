@@ -54,13 +54,17 @@
 									  $.modal.close();
 								});
 								$("#m_confirm").click(function(inputValue){
-									  	if (inputValue == false) return false;
+									  	/* if (inputValue == false) return false;
 									  	var input = inputValue.toLowerCase();
 									 	if (input == "jpg" || input== "png" || input=="gif") {
-									    	$("#imageType").val(input);
+									    	$("#imageType").val(input); */
+									    	/* var select = $("#imageType option:selected").val(); */
+									    	var select = $("select[name=imageType]").val();
+									    	/* alert(select); */
+									    	$("#imageType").val(select);
 									    	$("#tifForm").submit();
-									    	return true;
-									  	}
+									    	/* return true; */
+									  	/* } */
 								});
 							});
 						}else{
@@ -237,7 +241,7 @@ margin-top:3%;
 	<div class="content">
 		<section class="backone">
 				<form id="tifForm"name="tifUploadForm" action="divideAction" method="post" enctype="multipart/form-data">
-					<input type="file" name="file" id="file" accept="image/tiff" style="display:none;"/><!--  style="display:none;" -->
+					<input type="file" name="file" id="file" accept="image/tiff" style="display:none;"/>
 					<div class="tifUpload" onclick=document.all.file.click();>
 						<div class="topText1">
 							<span class="tifDrop">여기에 TIF 파일 드롭하기</span><br/>
@@ -250,6 +254,21 @@ margin-top:3%;
 					<!-- <div id="selectBox">
 					<input id="imageType" name="imageType" type="hidden" value="jpg"/>
 					</div> -->
+					<!-- modal content -->
+						<div id="modal_content">
+							<div id="selectBox" style="margin-top:10%;">
+								<div class="modal_text" style=" margin-top:10%;"><h2>확장자 선택</h2><br/>변환하실 확장자를 선택해주세요.</div>
+								<select name="imageType" id="imageType" style="height:45px; width:80%; margin:15px auto 0px auto;">
+									<option value="jpg">jpg</option>
+									<option value="png">png</option>
+									<option value="gif">gif</option>
+								</select>
+							</div>
+							<div class="modalBtn" style="width:100%; margin:15px auto;">
+							<button type="button" id="m_close" style="background-color:#CDCED0;">Cancel</button>
+							<button type="button" id="m_confirm" style="background-color:#8CD4F5;">OK</button>
+							</div>
+						</div>
 					</div>
 				</form>
 				<!-- <div id="mo_content">모달팝업 테스트<input type="button" value="팝업" id="open"></div> -->
@@ -261,19 +280,3 @@ margin-top:3%;
 	</div>
 </body>
 </html>
-
-<!-- modal content -->
-<div id="modal_content">
-	<div id="selectBox" style="margin-top:10%;">
-		<div class="modal_text" style=" margin-top:10%;"><h2>확장자 선택</h2><br/>변환하실 확장자를 선택해주세요.</div>
-		<select name="imageType" style="height:45px; width:80%; margin:15px auto 0px auto;">
-			<option value="jpg">jpg</option>
-			<option value="png">png</option>
-			<option value="gif">gif</option>
-		</select>
-	</div>
-	<div class="modalBtn" style="width:100%; margin:15px auto;">
-	<button type="button" id="m_close" style="background-color:#CDCED0;">Cancel</button>
-	<button type="button" id="m_confirm" style="background-color:#8CD4F5;">OK</button>
-	</div>
-</div>
