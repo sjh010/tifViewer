@@ -88,6 +88,7 @@
 <style>
 #simplemodal-overlay {
 background-color:#000;
+text-align:center;
 }
 
 #modal_content{
@@ -102,14 +103,20 @@ text-align:center;
 border-radius: 15px;
 }
 
-.modalBtn button{
+.modalBtn input[type=button]{
 width:98px;
 height:60px;
 color:#fff;
-/* font-size:1.6em; */
 border:none;
 border-radius: 5px;
 cursor:pointer;
+font-color:white;
+font-size:25px;
+text-align:center;
+}
+
+#simplemodal-container{
+left:0;
 }
 
 * {
@@ -189,7 +196,7 @@ margin-top:3%;
 }
 
 /* 버튼 css */
-#submitBtn {
+#submitBtn{
 	float: left;
 	background: #8CD4F5;
 	color: #fff;
@@ -252,7 +259,7 @@ margin-top:3%;
 							<span class="tifSelect">파일선택</span>
 						</div>
 					</div>
-					<input type="text" id="type" name="type" style="diaplay:none"/>
+					<input type="hidden" id="type" name="type" style="diaplay:none"/>
 					<div class="btnBox">
 					<!-- <div id="selectBox">
 					<input id="imageType" name="imageType" type="hidden" value="jpg"/>
@@ -268,8 +275,8 @@ margin-top:3%;
 								</select>
 							</div>
 							<div class="modalBtn" style="width:100%; margin:15px auto;">
-							<button type="button" id="m_close" style="background-color:#CDCED0;">Cancel</button>
-							<button type="button" id="m_confirm" style="background-color:#8CD4F5;">OK</button>
+							<input type="button" id="m_close" value="Cancel" style="background-color:#CDCED0; text-align:center;"></button>
+							<input type="button" id="m_confirm" value="OK" style="background-color:#8CD4F5; text-align:center;"></button>
 							</div>
 						</div>
 					</div>
