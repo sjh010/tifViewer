@@ -55,54 +55,24 @@ img {
 } */
 
 .thumnail{
+	width:600px;
+	margin:0 auto;
+}
+
+.thumnail ul{
 	width:100%;
 	margin:0 auto;
 }
 
-/*
-#thumnail li img{
-	margin:0 auto;
-}
-
-#nav li {
-	float: left;
-	margin: 0 10px 0 0;
-	position: relative;
-	width: 100px;
-	height: 100px;
-}
-
-#nav img {
-	max-height: 100%;
-	height: expression(this.height > 50 ? 50 : true);
-	width: auto;
-	display: block;
-	margin: 0 auto;
-} */
 
 #window img {
 	display: block;
 	margin: 0 auto;
+	padding-left:30px;
 	max-height: 300px;
 	height: expression(this.height < 300px ? 300px : true);
 	width: auto;
 }
-
-/* #nav a {
-	display: block;
-	height: 100px;
-	width: 100px;
-	margin: 0 auto;
-} */
-
-/* #nav a.active {
-	display: block;
-	border: 2px solid #bbb;
-	-webkit-border-radius: 5px;
-	margin: 0 auto;
-	height: expression(this.height < 300px ? 300px : true);
-	width: auto;
-} */
 
 #window {
 	clear: both;
@@ -139,7 +109,6 @@ img {
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-<!-- <script type="text/javascript" src="resources/thumnail/jquery.bxslider.min.js"></script> -->
 <script type="text/javascript">
 	/* $('.bxslider').bxSlider({
 		pagerCustom : '#bx-pager'
@@ -183,16 +152,6 @@ img {
 						</form>
 					</div>
 				</div>
-				<%-- <div id="window2"></div>
-				<ul class="bxslider">
-					<li><a href="<%=request.getContextPath()%>${filePath[0] }"><img src="<%=request.getContextPath()%>${filePath[0] }" /></a></li>
-				</ul>
-				</div>
-				<div id="bx-pager">
-					<c:forEach var="item" items="${filePath }">
-						<a href="<%=request.getContextPath()%>${item}"><img src="<%=request.getContextPath()%>${item}" class="mini"/></a> 
-					</c:forEach>
-				</div> --%>
 			</article>
 		</section>
 	</div>
