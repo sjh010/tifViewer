@@ -88,12 +88,13 @@ public class MainController {
 	
 	// tiff -> image 변환 및 뷰어 페이지 반환
 	@RequestMapping(value="divideAction", method=RequestMethod.POST)
-	public String divideAction(HttpServletRequest request, HttpSession session, MultipartFile file, @RequestParam(value="imageType") String imageType, Model model){
+	public String divideAction(HttpSession session, MultipartFile file, String type, Model model){
+		
 		String path = session.getServletContext().getRealPath("/divide");
 		System.out.println(path);
 		File folder = new File(path);
 		if(!folder.exists()) folder.mkdir();
-		ArrayList<String> resultFilePaths = convertService.TiffToImage(path, file, imageType);
+		ArrayList<String> resultFilePaths = convertService.TiffToImage(path, file, type);
 		
 		model.addAttribute("filePath", resultFilePaths);
 		return "viewer";

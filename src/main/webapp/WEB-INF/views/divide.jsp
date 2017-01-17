@@ -60,9 +60,11 @@
 									    	$("#imageType").val(input); */
 									    	/* var select = $("#imageType option:selected").val(); */
 									    	var select = $("select[name=imageType]").val();
-									    	/* alert(select); */
-									    	$("#imageType").val(select);
+									  
+									    	$("#type").val(select);
+
 									    	$("#tifForm").submit();
+									    	
 									    	/* return true; */
 									  	/* } */
 								});
@@ -242,7 +244,7 @@ margin-top:3%;
 		<section class="backone">
 				<form id="tifForm"name="tifUploadForm" action="divideAction" method="post" enctype="multipart/form-data">
 					<input type="file" name="file" id="file" accept="image/tiff" style="display:none;"/>
-					<div class="tifUpload" onclick=document.all.file.click();>
+					<div class="tifUpload" onclick="document.all.file.click();">
 						<div class="topText1">
 							<span class="tifDrop">여기에 TIF 파일 드롭하기</span><br/>
 						</div>
@@ -250,6 +252,7 @@ margin-top:3%;
 							<span class="tifSelect">파일선택</span>
 						</div>
 					</div>
+					<input type="text" id="type" name="type" style="diaplay:none"/>
 					<div class="btnBox">
 					<!-- <div id="selectBox">
 					<input id="imageType" name="imageType" type="hidden" value="jpg"/>
