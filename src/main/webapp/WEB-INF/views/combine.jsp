@@ -61,7 +61,7 @@
                 data.append('file-' + i, file);
             });
             $.ajax({
-                url: 'combineAction1',
+                url: 'combineAction',
                 type: "POST",
                 dataType: "text",
                 data: data,

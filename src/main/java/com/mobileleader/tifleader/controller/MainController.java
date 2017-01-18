@@ -2,7 +2,6 @@ package com.mobileleader.tifleader.controller;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -24,46 +22,30 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mobileleader.tifleader.service.ConvertService;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class MainController {
 	
 	@Autowired
 	ConvertService convertService;
 	
-	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+//	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
+
+	// 메인 페이지 요청
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String main() {
 		return "main";
 	}
 	
-	// 이미지 파일 업로드 페이지 요청
+	// 이미지 업로드 페이지 요청
 	@RequestMapping(value="/combine", method=RequestMethod.GET)
 	public String convert(){
 		return "combine";
 	}
 	
-	// 이미지 파일 업로드 및 다운로드
+	// 이미지 -> TIF 파일 변환 요청
 	@RequestMapping(value="/combineAction", method=RequestMethod.POST)
 	@ResponseBody
-	public String combineAction(HttpSession session, MultipartFile[] files, Model model){
-		String path = session.getServletContext().getRealPath("/combine");
-		File file = new File(path);
-		if(!file.exists()) file.mkdir();
-		String tiffFilePath = convertService.imagesToTiff(path, files).replace("\\", "/");
-		return tiffFilePath;
-	}
-	
-	//so jeong hwan : ajax test
-	@RequestMapping(value="/combineAction1", method=RequestMethod.POST)
-	@ResponseBody
-	public String convert(MultipartHttpServletRequest request, HttpSession session){
+	public String combineAction(MultipartHttpServletRequest request, HttpSession session){
 	
 		Iterator<String> itr = request.getFileNames();
 		List<MultipartFile> fileList = new ArrayList<MultipartFile>();
@@ -80,13 +62,13 @@ public class MainController {
 		return tiffFilePath;
 	}
 	
-	// tiff 파일 업로드 페이지
+	// TIF 업로드 페이지 요청
 	@RequestMapping(value="divide", method=RequestMethod.GET)
 	public String divide(){
 		return "divide";
 	}
 	
-	// tiff -> image 변환 및 뷰어 페이지 반환
+	// TIF -> image 변환 및 뷰어 페이지 요청
 	@RequestMapping(value="divideAction", method=RequestMethod.POST)
 	public String divideAction(HttpSession session, MultipartFile file, String type, Model model){
 		
@@ -100,6 +82,7 @@ public class MainController {
 		return "viewer";
 	}
 	
+	// TIF 파일 다운로드 요청
 	@RequestMapping(value="download", method=RequestMethod.GET)
 	public ModelAndView download(HttpServletRequest request){
 		String filePath = request.getParameter("filePath");
@@ -107,6 +90,7 @@ public class MainController {
 		return new ModelAndView("download", "downloadFile", tiffFile);
 	}
 	
+	// 이미지 파일 다운로드 요청
 	@RequestMapping(value="downloadZip", method=RequestMethod.GET)
 	public ModelAndView downloadDivide(HttpSession session, HttpServletRequest request){
 		String serverPath = session.getServletContext().getRealPath("/divide");
@@ -115,5 +99,4 @@ public class MainController {
 		File zipFile = convertService.getZipFile(serverPath +"/"+backPath);
 		return new ModelAndView("download", "downloadFile", zipFile);
 	}
-	
 }
