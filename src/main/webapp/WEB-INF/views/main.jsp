@@ -6,9 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-* {@import
-	url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);font-family: 
-	'Nanum Barun Gothic ', sans-serif ;
+* {
+	@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
+	font-family:'Nanum Barun Gothic ', sans-serif;
 }
 
 html{
@@ -20,37 +20,30 @@ body {
 	margin:0;
 }
 
-.content{
-height: 60%;
- margin:0 0 -5px 0;
+.content {
+	height: 60%;
+	margin:0 0 -5px 0;
 }
 
 .footerdiv {
-	/* margin-top:15%; */
 	margin-left: 17%;
 	height:5px
 }
 
 section.backone {
 	background-size: auto 100%;
-	/* height: 80%; */
-	/* min-height:100%;
-	height:auto; */
 	position: relative;
 	margin-top: 5%;
 }
 
 section.uploadImgBox {
 	margin: 0 auto;
-	/* height: 50%; */
-	/* width: 100%; */
 }
 
 .jpgToTif {
 	display: block;
 	height: 300px;
 	width: 280px;
-	/* margin: 70px 0px 180px 480px; */
 	margin-left: 30%;
 	padding-right: 0px;
 	float: left;
@@ -63,7 +56,6 @@ section.uploadImgBox {
 	display: block;
 	height: 300px;
 	width: 280px;
-	/* margin: 70px 480px 180px 0px; */
 	margin-right: 30%;
 	padding-left: 0px;
 	float: right;
@@ -89,12 +81,10 @@ section.uploadImgBox {
 }
 
 .topText1 {
-	/* margin: 200px 0px 0px 0px; */
 	margin-top: 75%;
 }
 
 .topText2 {
-	/* margin: 230px 0px 0px 0px; */
 	margin-top: 80%;
 }
 </style>

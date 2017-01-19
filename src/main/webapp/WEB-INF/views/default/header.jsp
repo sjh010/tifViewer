@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-/* @import url(http://fonts.googleapis.com/earlyaccess/hanna.css); */
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 
 .header {
@@ -19,42 +18,42 @@
 	text-align:center;
 }
 
-a{
-text-decoration:none;
+a {
+	text-decoration:none;
 }
 
 /* 버튼 css */
-
 button{
-  background:#CDCED0;
-  color:#fff;
-  border:none;
-  position:relative;
-  height:60px;
-  font-size:1.6em;
-  padding:0 2em;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
-  border-radius: 40px;
-}
-button:hover{
-  background:#fff;
-  border : 3px solid #CDCED0;
-  color:#CDCED0;
+	background:#CDCED0;
+	color:#fff;
+	border:none;
+	position:relative;
+	height:60px;
+	font-size:1.6em;
+	padding:0 2em;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
+	border-radius: 40px;
 }
 
-#btnMain {
+button:hover{
+	background:#fff;
+	border : 3px solid #CDCED0;
+	color:#CDCED0;
+}
+
+#mainBtn {
 	float:right;
 	position:absolute;
-	top:100px;
-	right:100px;
+	top:20px;
+	right:30px;
 }
 
 </style>
 </head>
 <body>
 	<div class="header">tiffConverter</div>
-	<a href="/tif"><button type="button" id="mainBtn" style="float:right; margin-right:5%;">Main</button></a>
+	<a href="/tif"><button type="button" id="mainBtn">Main</button></a>
 </body>
 </html>

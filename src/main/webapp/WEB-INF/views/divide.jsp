@@ -12,116 +12,44 @@
 <script type="text/javascript">
 	$(function() {
 		$("#file").on('change', function() {
-					//Get count of selected files
-					var countFiles = $(this)[0].files.length;
-					var imgPath = $(this)[0].value;
-					if(countFiles > 0){
-						var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();						
-						if(extn=="tif"||extn=="tiff"){
-							swal({
-							  title: "파일 분할",
-							  text: "올리신 Tiff 파일을 분할하시겠습니까?",
-							  type: "info",
-							  showCancelButton: true,
-							  cancelButtonText : "취소",
-							  confirmButtonText: "확인",
-							  closeOnConfirm: true
-							},
-							function(){
-								/* swal({
-									  title: "확장자 선택",
-									  text: "변환하실 확장자를 입력해주세요 (JPG / PNG / GIF)",
-									  type: "input",
-									  showCancelButton: true,
-									  closeOnConfirm: false,
-									  animation: "slide-from-top",
-									  inputPlaceholder: "확장자를 입력해주세요."
-									},
-									function(inputValue){
-									  	if (inputValue == false) return false;
-									  	var input = inputValue.toLowerCase();
-									 	if (input == "jpg" || input== "png" || input=="gif") {
-									    	$("#imageType").val(input);
-									    	$("#tifForm").submit();
-									    	return true;
-									  	}else{
-										  	swal.showInputError("지원하지 않는 확장자입니다.");
-										  	return false;
-									  	}
-									});*/
-								$("#modal_content").modal();
-								$("#m_close").click(function(){
-									  $.modal.close();
-								});
-								$("#m_confirm").click(function(inputValue){
-									  	/* if (inputValue == false) return false;
-									  	var input = inputValue.toLowerCase();
-									 	if (input == "jpg" || input== "png" || input=="gif") {
-									    	$("#imageType").val(input); */
-									    	/* var select = $("#imageType option:selected").val(); */
-									    	var select = $("select[name=imageType]").val();
-									  
-									    	$("#type").val(select);
-
-									    	$("#tifForm").submit();
-									    	
-									    	/* return true; */
-									  	/* } */
-								});
+				//Get count of selected files
+				var countFiles = $(this)[0].files.length;
+				var imgPath = $(this)[0].value;
+				if(countFiles > 0){
+					var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();						
+					if(extn=="tif"||extn=="tiff"){
+						swal({
+						  title: "파일 분할",
+						  text: "올리신 Tiff 파일을 분할하시겠습니까?",
+						  type: "info",
+						  showCancelButton: true,
+						  cancelButtonText : "취소",
+						  confirmButtonText: "확인",
+						  closeOnConfirm: true
+						},
+						function(){
+							$("#modal_content").modal();
+							$("#m_close").click(function(){
+								$.modal.close();
 							});
-						}else{
-							swal("이미지 타입 오류", "해당 기능은 Tiff 형식만 지원합니다.","error");
-						}
+							$("#m_confirm").click(function(inputValue){
+						    	var select = $("select[name=imageType]").val();
+						    	$("#type").val(select);
+						    	$("#tifForm").submit();
+							});
+						});
+					}else{
+						swal("이미지 타입 오류", "해당 기능은 Tiff 형식만 지원합니다.","error");
 					}
+				}
 		});
 	});
-	
-	/* $(document).ready(function(){
-		 $("#open").click(function(){
-		  $("#modal_content").modal(); 
-		 });
-		 $("#m_close").click(function(){
-		  $.modal.close();
-		 });
-	}); */
+
 </script>
 <style>
-#simplemodal-overlay {
-background-color:#000;
-text-align:center;
-}
-
-#modal_content{
-display:none;
-margin:0 auto;
-padding-top:1%;
-width:400px;
-height:300px;
-background:white;
-color:black;
-text-align:center;
-border-radius: 15px;
-}
-
-.modalBtn input[type=button]{
-width:98px;
-height:60px;
-color:#fff;
-border:none;
-border-radius: 5px;
-cursor:pointer;
-font-color:white;
-font-size:25px;
-text-align:center;
-}
-
-#simplemodal-container{
-left:0;
-}
-
 * {
 	@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
-	font-family: 'Nanum Barun Gothic ', sans-serif;
+	font-family:'Nanum Barun Gothic ', sans-serif;
 }
 html {
 	height: 100%;
@@ -133,12 +61,11 @@ body {
 }
 
 .content{
-height: 60%;
- margin:0 0 -5px 0;
+	height: 60%;
+	 margin:0 0 -5px 0;
 }
 
 .footerdiv {
-	/* margin-top:15%; */
 	margin-left: 17%;
 	height:5px
 }
@@ -155,7 +82,6 @@ section.backone {
 	display: block;
 	height: 250px;
 	width: 880px;
-	/* margin: 100px 10px 50px 350px; */
 	margin: 0 auto;
 	background-image: url('resources/images/tifUploadBg.png');
 	background-size: 100% 100%;
@@ -191,8 +117,26 @@ section.backone {
 }
 
 .btnBox{
-margin-left: 40%;
-margin-top:3%;
+	margin-left: 40%;
+	margin-top:3%;
+}
+
+#file, #type {
+	display:none;
+}
+
+#selectBox, .modal_text {
+	margin-top:10%;
+}
+
+#selectBox select {
+	font-size:20px;
+}
+
+#imageType {
+	height:45px;
+	width:80%;
+	margin:15px auto 0px auto;
 }
 
 /* 버튼 css */
@@ -242,17 +186,61 @@ margin-top:3%;
 	transition: 800ms ease all;
 }
 
-#selectBox select {
-font-size:20px;
+#m_close {
+	background-color:#CDCED0;
+	text-align:center;
 }
 
+#m_confirm {
+	background-color:#8CD4F5;
+	text-align:center;
+}
+
+/* modal css */
+#simplemodal-overlay {
+	background-color:#000;
+	text-align:center;
+}
+
+#modal_content{
+	display:none;
+	margin:0 auto;
+	padding-top:1%;
+	width:400px;
+	height:300px;
+	background:white;
+	color:black;
+	text-align:center;
+	border-radius: 15px;
+}
+
+.modalBtn {
+	width:100%;
+	margin:15px auto;
+}
+
+.modalBtn input[type=button]{
+	width:98px;
+	height:60px;
+	color:#fff;
+	border:none;
+	border-radius: 5px;
+	cursor:pointer;
+	font-color:white;
+	font-size:25px;
+	text-align:center;
+}
+
+#simplemodal-container{
+	left:0;
+}
 </style>
 </head>
 <body>
 	<div class="content">
 		<section class="backone">
-				<form id="tifForm"name="tifUploadForm" action="divideAction" method="post" enctype="multipart/form-data">
-					<input type="file" name="file" id="file" accept="image/tiff" style="display:none;"/>
+				<form id="tifForm" name="tifUploadForm" action="divideAction" method="post" enctype="multipart/form-data">
+					<input type="file" name="file" id="file" accept="image/tiff" />
 					<div class="tifUpload" onclick="document.all.file.click();">
 						<div class="topText1">
 							<span class="tifDrop">여기에 TIF 파일 드롭하기</span><br/>
@@ -261,34 +249,31 @@ font-size:20px;
 							<span class="tifSelect">파일선택</span>
 						</div>
 					</div>
-					<input type="hidden" id="type" name="type" style="diaplay:none"/>
+					<input type="hidden" id="type" name="type" />
 					<div class="btnBox">
-					<!-- <div id="selectBox">
-					<input id="imageType" name="imageType" type="hidden" value="jpg"/>
-					</div> -->
-					<!-- modal content -->
+						<!-- modal content -->
 						<div id="modal_content">
-							<div id="selectBox" style="margin-top:10%;">
-								<div class="modal_text" style=" margin-top:10%;"><h2>확장자 선택</h2><br/>변환하실 확장자를 선택해주세요.</div>
-								<select name="imageType" id="imageType" style="height:45px; width:80%; margin:15px auto 0px auto;">
+							<div id="selectBox">
+								<div class="modal_text"><h2>확장자 선택</h2><br/>변환하실 확장자를 선택해주세요.</div>
+								<select name="imageType" id="imageType">
 									<option value="jpg">jpg</option>
 									<option value="png">png</option>
 									<option value="gif">gif</option>
 								</select>
 							</div>
-							<div class="modalBtn" style="width:100%; margin:15px auto;">
-							<input type="button" id="m_close" value="Cancel" style="background-color:#CDCED0; text-align:center;"></button>
-							<input type="button" id="m_confirm" value="OK" style="background-color:#8CD4F5; text-align:center;"></button>
+							<div class="modalBtn">
+								<input type="button" id="m_close" value="Cancel">
+								<input type="button" id="m_confirm" value="OK">
 							</div>
 						</div>
+						<!-- end of modal_centent -->
 					</div>
 				</form>
-				<!-- <div id="mo_content">모달팝업 테스트<input type="button" value="팝업" id="open"></div> -->
 		</section>
 	</div>
 	<!-- footer  -->
 	<div class="footerdiv">
-	<jsp:include page="default/footer.jsp" />
+		<jsp:include page="default/footer.jsp" />
 	</div>
 </body>
 </html>

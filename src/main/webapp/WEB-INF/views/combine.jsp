@@ -29,7 +29,6 @@
 
 								var reader = new FileReader();
 								reader.onload = function(e) {
-									//$("<img />", {"src" : e.target.result, "class" : "thumb-image"}).appendTo(image_holder);
 									var htmlCode = "<img src='"+ e.target.result + "' class='thumb-image' />";
 									image_area.append(htmlCode);
 								}
@@ -82,23 +81,23 @@
 </script>
 
 <style>
-* {@import
-	url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
-	font-family: 'Nanum Barun Gothic', sans-serif ;
+* {
+	@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
+	font-family:'Nanum Barun Gothic', sans-serif;
 }
 
-html{
+html {
 	height: 100%;
 }
 
- body {
+body {
 	height: 80%;
 	margin:0;
 }
 
 .content{
-height: auto;
- margin:0 0 -5px 0;
+	height: auto;
+	margin:0 0 -5px 0;
 }
 
 .footerdiv {
@@ -115,21 +114,18 @@ section.backone {
 }
 
 .thumb-image{
-	/*display:inline-block;*/
-	/* width : 200px; */
 	max-height:200px;
 	height:expression(this.height>300 ? 300:true);
 	width:auto;
 }
 
 #image-holder{
-width: 100%;
-margin : 0 auto;
-display:table;
-vertical-align:middle;
+	width: 100%;
+	margin : 0 auto;
+	display:table;
+	vertical-align:middle;
 } 
 
-/*#image-holder { display:table; }*/
 .imgLayer {
 		display:table-cell;
 		text-align:center;
@@ -140,13 +136,12 @@ vertical-align:middle;
 		width:auto;
 		border:1px solid #222222;
 		overflow:hidden;
-	}
+}
 
 
- .thumb-image img{
-/* width:100%;*/
-margin : 0 auto;
-display:block;
+.thumb-image img{
+	margin : 0 auto;
+	display:block;
 } 
 
 .imgUpload {
@@ -154,7 +149,6 @@ display:block;
 	display: block;
 	height: 250px;
 	width: 880px;
-	/* margin: 100px 10px 50px 350px; */
 	margin : 0 auto;
 	background-image: url('resources/images/imgUploadBg.png');
 	background-size: 100% 100%;
@@ -189,35 +183,31 @@ display:block;
 	right: 400px;
 }
 
-/* .btnBox button : not(.submitBtn){
-margin-left: 30%;
-margin-top:1%;
+#files {
+	display: none;
 }
 
-#submitBtn{
-margin-left: 45%;
-margin-top:1%;
-} */
-
-.btnBox button{
-margin-left: 45%;
-margin-top:1%;
+#imagesArea{
+	text-align: center;
+	display:none;
 }
 
 /* 버튼 css */
-
 .btnBox button{
-  background:#8CD4F5;
-  color:#fff;
-  border:none;
-  position:relative;
-  height:60px;
-  font-size:1.6em;
-  padding:0 2em;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
-  border-radius: 40px;
+	display:none;
+	background:#8CD4F5;
+	color:#fff;
+	border:none;
+	position:relative;
+	height:60px;
+	font-size:1.6em;
+	margin-left: 45%;
+	margin-top:1%;
+	padding:0 2em;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
+	border-radius: 40px;
 }
 
 .btnBox button:hover{
@@ -226,43 +216,37 @@ margin-top:1%;
   color:#8CD4F5;
 }
 
-
-
 </style>
 </head>
 <body>
 	<div class="content">
 		<section class="backone">
-		<form id="download" action="download">
-			<input type="hidden" name="filePath" id="filePath"/>
-		</form>
-		<form name="imgUploadForm" enctype="multipart/form-data">
-			<input type="file" name="file" id="files" accept="image/*"
-				style="display: none;" multiple="multiple" />
-			<!-- style="display:none;" -->
-			<!--  <img id="blah" src="#" alt="your image" />-->
-			<div id="image-holder">
-				<p id="imagesArea" style="text-align: center; display:none;" >
-				<div id="imgUpload" class="imgUpload" onclick="fileUpClick();">
-					<div class="topText1">
-						<span class="imgDrop">여기에 이미지 드롭하기</span><br />
-					</div>
-					<div class="topText2">
-						<span class="imgSelect">파일선택</span>
+			<form id="download" action="download">
+				<input type="hidden" name="filePath" id="filePath"/>
+			</form>
+			<form name="imgUploadForm" enctype="multipart/form-data">
+				<input type="file" name="file" id="files" accept="image/*" multiple="multiple" />
+				<div id="image-holder">
+					<p id="imagesArea">
+					<div id="imgUpload" class="imgUpload" onclick="fileUpClick();">
+						<div class="topText1">
+							<span class="imgDrop">여기에 이미지 드롭하기</span><br />
+						</div>
+						<div class="topText2">
+							<span class="imgSelect">파일선택</span>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="btnBox">
-			<button type="button" id="submitBtn" class="submitBtn" style="display:none;">Convert</button>
-			<button type="button" id="downloadBtn" onclick="download();" style="display:none; ">Download</button>
-			<!-- <a href="/tif"><button type="button" id="mainBtn" style="float:right; margin-right:10%;" >Main</button></a> --><!-- style="display:none;" -->
-			</div>
-		</form>
+				<div class="btnBox">
+					<button type="button" id="submitBtn" class="submitBtn">Convert</button>
+					<button type="button" id="downloadBtn" onclick="download();">Download</button>
+				</div>
+			</form>
 		</section>
 	</div>
 	<!-- footer  -->
 	<div class="footerdiv">
-	<jsp:include page="default/footer.jsp" />
+		<jsp:include page="default/footer.jsp" />
 	</div>
 </body>
 </html>

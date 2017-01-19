@@ -7,10 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style>
-* {@import
-	url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);font-family:
-	'Nanum Barun Gothic ', sans-serif ;
-	
+* {
+	@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
+	font-family:'Nanum Barun Gothic ', sans-serif ;	
 }
 
 html {
@@ -39,7 +38,7 @@ section.backone {
 	margin-top: 5%;
 }
 
-/* 썸네일 */
+/* 썸네일 css */
 ul, li {
 	list-style: none;
 }
@@ -47,12 +46,6 @@ ul, li {
 img {
 	border: 0;
 }
-
-/* #wrap {
-	margin: 30px auto;
-	width: 640px;
-	height: auto;
-} */
 
 .thumnail{
 	width:600px;
@@ -80,10 +73,12 @@ img {
 
 /* 버튼 css */
 .btnBox button {
+	float: right;
 	background: #8CD4F5;
 	color: #fff;
 	border: none;
 	position: relative;
+	margin-right:5%;
 	height: 60px;
 	font-size: 1.6em;
 	padding: 0 2em;
@@ -102,7 +97,6 @@ img {
 .mini{
 	float: left;
 	margin: 0 10px 10px 0;
-	/* position: relative; */
 	max-height:100px;
 	height:expression(this.height>100 ? 100:true);
 	width:auto;
@@ -110,10 +104,6 @@ img {
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script type="text/javascript">
-	/* $('.bxslider').bxSlider({
-		pagerCustom : '#bx-pager'
-	});
- */
 	$(document).ready(function() {
 		$('#bx-pager a').mouseover(function(e) {
 			e.preventDefault();
@@ -145,7 +135,7 @@ img {
 					<div id="window">
 						<img src="<%=request.getContextPath()%>${filePath[0] }" />
 						<div class="btnBox">
-							<button type="button" class="btnDown" id="btnDown" onclick="download();" style="float: right; margin-right:5%;">Download</button>
+							<button type="button" class="btnDown" id="btnDown" onclick="download();">Download</button>
 						</div>
 						<form action="downloadZip" method="get" id="downloadForm">
 							<input id="filePath" type="hidden" value="<%=request.getContextPath()%>${filePath[0] }" name="filePath" />
