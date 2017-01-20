@@ -26,6 +26,8 @@
 				//Get count of selected files
 				var countFiles = $(this)[0].files.length;
 				var imgPath = $(this)[0].value;
+				var viewer_area = $("#viewerArea");		
+				var tifupload_area = $("#tifUpload");
 				if(countFiles > 0){
 					var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();						
 					if(extn=="tif"||extn=="tiff"){
@@ -47,6 +49,8 @@
 						    	var select = $("select[name=imageType]").val();
 						    	$("#type").val(select);
 						    	$("#tifForm").submit();
+						    	tifupload_area.hide();
+						    	viewer_area.show();
 							});
 						});
 					}else{
@@ -192,7 +196,7 @@
 		vertical-align:middle;
 		line-height:0;
 		max-height:200px;
-		height:expression(this.height>00 ? 200:true);
+		height:expression(this.height>200 ? 200:true);
 		width:auto;
 		border:1px solid #222222;
 		overflow:hidden;
@@ -300,20 +304,6 @@
 		<div id="splitlayout" class="splitlayout">
 			<div class="intro">
 				<div class="side side-left">
-					<header class="codropsheader clearfix">
-						<!-- <span>Blueprint <span class="bp-icon bp-icon-about" data-content="The Blueprints are a collection of basic and minimal website concepts, components, plugins and layouts with minimal style for easy adaption and usage, or simply for inspiration."></span></span>
-						<h1>Split Layout</h1>
-						<nav>
-							<a href="http://tympanus.net/Blueprints/OnScrollEffectLayout/" class="bp-icon bp-icon-prev" data-info="previous Blueprint"><span>Previous Blueprint</span></a>
-							a href="" class="bp-icon bp-icon-next" data-info="next Blueprint"><span>Next Blueprint</span></a
-							<a href="http://tympanus.net/codrops/?p=16693" class="bp-icon bp-icon-drop" data-info="back to the Codrops article"><span>back to the Codrops article</span></a>
-							<a href="http://tympanus.net/codrops/category/blueprints/" class="bp-icon bp-icon-archive" data-info="Blueprints archive"><span>Go to the archive</span></a>
-						</nav>
-						<div class="demos">
-							<a class="current" href="index.html">Effect 1</a>
-							<a href="index2.html">Effect 2</a>
-						</div> -->
-					</header>
 					<!-- main 페이지 -->
 					<div class="intro-content">
 						<div class="profile"><img src="resources/img/tif1.png" alt="profile1"></div>
@@ -334,7 +324,29 @@
 				<div class="page-inner">
 					<form name="tifUploadForm" id="tifForm" action="divideAction" method="post" enctype="multipart/form-data">
 						<input type="file" name="file" id="file" accept="image/tiff"/>
-							<div class="tifUpload" onclick="tifFileUpClick();"></div>
+							<div id="tif-holder">
+								<!-- tif 분할하여 업로드 후 미리보기(viewer) -->
+								<div id="viewerLayout">
+									<div id="slider-nav" class="slider-nav">
+										<ul id="bx-pager">
+											<c:forEach var="item" items="${filePath }">
+												<li><a href="<%=request.getContextPath()%>${item}"><img src="<%=request.getContextPath()%>${item}" class="mini"/></a></li>
+											</c:forEach>
+										</ul>
+									</div>
+									<div id="slider-for" class="slider-for">
+										<img src="<%=request.getContextPath()%>${filePath[0] }" />
+										<div class="btnBox">
+											<button type="button" class="btnDown" id="btnDown" onclick="download();">Download</button>
+										</div>
+										<form action="downloadZip" method="get" id="downloadForm">
+											<input id="filePath" type="hidden" value="<%=request.getContextPath()%>${filePath[0] }" name="filePath" />
+										</form>
+									</div>
+								</div>
+								<!-- tif 분할하여 업로드 후 미리보기(viewer) 끝 -->
+								<div class="tifUpload" onclick="tifFileUpClick();"></div>
+							</div>
 							<input type="hidden" id="type" name="type" />
 							<div class="btnConvert">
 								<!-- modal content -->
