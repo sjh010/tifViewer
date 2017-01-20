@@ -36,12 +36,6 @@ public class MainController {
 		return "main";
 	}
 	
-	// 이미지 업로드 페이지 요청
-	@RequestMapping(value="/combine", method=RequestMethod.GET)
-	public String convert(){
-		return "combine";
-	}
-	
 	// 이미지 -> TIF 파일 변환 요청
 	@RequestMapping(value="/combineAction", method=RequestMethod.POST)
 	@ResponseBody
@@ -60,12 +54,6 @@ public class MainController {
 		String tiffFilePath = convertService.imagesToTiff(path, mfileList).replace("\\", "/");
 		
 		return tiffFilePath;
-	}
-	
-	// TIF 업로드 페이지 요청
-	@RequestMapping(value="divide", method=RequestMethod.GET)
-	public String divide(){
-		return "divide";
 	}
 	
 	// TIF -> image 변환 및 뷰어 페이지 요청
