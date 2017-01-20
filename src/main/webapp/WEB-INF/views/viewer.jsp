@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include page="default/header.jsp" />
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="resources/slide/slick-theme.css" />
+<link rel="stylesheet" type="text/css" href="resources/slide/slick.css" />
 <style>
 * {
 	@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
@@ -23,12 +24,6 @@ body {
 .content {
 	height: auto;
 	margin: 0 0 -5px 0;
-}
-
-.footerdiv {
-	margin-top: 5%;
-	margin-left: 17%;
-	height: 5px
 }
 
 section.backone {
@@ -103,6 +98,9 @@ img {
 }
 </style>
 <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script src="resources/slide/slick.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#bx-pager a').mouseover(function(e) {
@@ -113,11 +111,29 @@ img {
 			$('#window img').attr('src', img_url);
 			$('#filePath').val(img_url);
 		});
+		
+		$('.slider-for').slick({
+			  slidesToShow: 1,
+			  slidesToScroll: 1,
+			  arrows: false,
+			  fade: true,
+			  asNavFor: '.slider-nav'
+			});
+		
+		$('.slider-nav').slick({
+		  slidesToShow: 3,
+		  slidesToScroll: 1,
+		  asNavFor: '.slider-for',
+		  dots: true,
+		  centerMode: true,
+		  focusOnSelect: true
+		});
 	})
 
 	function download() {
 		$("#downloadForm").submit();
 	}
+		
 </script>
 </head>
 <body>
@@ -132,7 +148,7 @@ img {
 							</c:forEach>
 						</ul>
 					</div>
-					<div id="window">
+					<div id="window" class="window">
 						<img src="<%=request.getContextPath()%>${filePath[0] }" />
 						<div class="btnBox">
 							<button type="button" class="btnDown" id="btnDown" onclick="download();">Download</button>
@@ -144,10 +160,6 @@ img {
 				</div>
 			</article>
 		</section>
-	</div>
-	<!-- footer  -->
-	<div class="footerdiv">
-		<jsp:include page="default/footer.jsp" />
 	</div>
 </body>
 </html>

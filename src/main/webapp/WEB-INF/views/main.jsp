@@ -49,8 +49,8 @@
 						    	var select = $("select[name=imageType]").val();
 						    	$("#type").val(select);
 						    	$("#tifForm").submit();
-						    	tifupload_area.hide();
-						    	viewer_area.show();
+						    	/* tifupload_area.hide();
+						    	viewer_area.show(); */
 							});
 						});
 					}else{
@@ -169,10 +169,10 @@
 }
 
 .combineBtnBox input[type=button]:hover, .combineBtnBox input[type=button]:active {
-  background-color: #fff;
-  color: #000;
-  transition: background-color 0.3s ease-in, color 0.3s ease-in;
-  cursor:pointer;
+	 background-color: #fff;
+	 color: #000;
+	 transition: background-color 0.3s ease-in, color 0.3s ease-in;
+	 cursor:pointer;
 }
 
 /* img 업로드 미리보기 css */
@@ -191,15 +191,15 @@
 } 
 
 .imgLayer {
-		display:table-cell;
-		text-align:center;
-		vertical-align:middle;
-		line-height:0;
-		max-height:200px;
-		height:expression(this.height>200 ? 200:true);
-		width:auto;
-		border:1px solid #222222;
-		overflow:hidden;
+	display:table-cell;
+	text-align:center;
+	vertical-align:middle;
+	line-height:0;
+	max-height:200px;
+	height:expression(this.height>200 ? 200:true);
+	width:auto;
+	border:1px solid #222222;
+	overflow:hidden;
 }
 
 .thumb-image img{
@@ -295,6 +295,85 @@
 	left:0;
 }
 
+/* thumnail css */
+ul, li {
+	list-style: none;
+}
+
+img {
+	border: 0;
+}
+
+.thumnail{
+	width:100%;
+	height:150px;
+	background-color:#34495E;
+}
+
+.thumnail ul{
+	width:100%;
+	margin:10% auto;
+}
+
+
+.mini{
+	float: left;
+	margin: 0 10px 10px 0;
+	max-height:100px;
+	height:expression(this.height>100 ? 100:true);
+	width:auto;
+}
+
+#window {
+	width:100%;
+	clear: both;
+	background-color:#ECF0F1;
+}
+
+#window img {
+	display: block;
+	margin: 0 auto;
+	padding-left:30px;
+	max-height: 500px;
+	height: expression(this.height < 500px ? 500px : true);
+	width: auto;
+}
+
+#imagesArea{
+	text-align: center;
+}
+
+/* 버튼 css */
+.viwerBtnBox button {
+	float: right;
+	width: 15%;
+	height:45px;
+	font-weight: bold;
+	padding: 8px;
+	color: #A3B3BB;
+	border: 3px solid #A3B3BB;
+	text-align: center;
+	outline: none;
+	text-decoration: none;
+	transition: background-color 0.2s ease-out, color 0.2s ease-out;
+	background-color: rgba( 255, 255, 255, 0);
+}
+
+.viwerBtnBox button:hover {
+	background-color: #fff;
+	color: #000;
+	transition: background-color 0.3s ease-in, color 0.3s ease-in;
+	cursor:pointer;
+}
+
+#btnDown{
+	margin-right:2%;
+}
+
+#btnMain{
+	margin-right:5%;
+}
+
 </style>
 <title>Insert title here</title>
 </head>
@@ -324,17 +403,18 @@
 				<div class="page-inner">
 					<form name="tifUploadForm" id="tifForm" action="divideAction" method="post" enctype="multipart/form-data">
 						<input type="file" name="file" id="file" accept="image/tiff"/>
-							<div id="tif-holder">
+							<div class="tifUpload" onclick="tifFileUpClick();"></div>
+							<%-- <div id="tif-holder">
 								<!-- tif 분할하여 업로드 후 미리보기(viewer) -->
 								<div id="viewerLayout">
-									<div id="slider-nav" class="slider-nav">
+									<div id="thumnail" class="thumnail">
 										<ul id="bx-pager">
 											<c:forEach var="item" items="${filePath }">
 												<li><a href="<%=request.getContextPath()%>${item}"><img src="<%=request.getContextPath()%>${item}" class="mini"/></a></li>
 											</c:forEach>
 										</ul>
 									</div>
-									<div id="slider-for" class="slider-for">
+									<div id="window" class="window">
 										<img src="<%=request.getContextPath()%>${filePath[0] }" />
 										<div class="btnBox">
 											<button type="button" class="btnDown" id="btnDown" onclick="download();">Download</button>
@@ -345,8 +425,8 @@
 									</div>
 								</div>
 								<!-- tif 분할하여 업로드 후 미리보기(viewer) 끝 -->
-								<div class="tifUpload" onclick="tifFileUpClick();"></div>
-							</div>
+								
+							</div> --%>
 							<input type="hidden" id="type" name="type" />
 							<div class="btnConvert">
 								<!-- modal content -->
