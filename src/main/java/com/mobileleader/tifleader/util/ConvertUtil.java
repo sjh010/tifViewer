@@ -120,6 +120,8 @@ public class ConvertUtil {
 		for (int i = 1; i < list.size(); i++) {
 			vector.add(list.get(i));
 		}
+		param.setCompression(TIFFEncodeParam.COMPRESSION_DEFLATE);
+		param.setDeflateLevel(9);
 		param.setExtraImages(vector.iterator());
 		encoder.encode(list.get(0));
 		out.close();

@@ -57,32 +57,33 @@
 		
 		/* tif 병합 */
 		$("#files").on('change', function() {
+			var index = 0;
 			//Get count of selected files
 			var countFiles = $(this)[0].files.length;
-			
-			for(var i=0; i<countFiles; i++){
-				var fileInfo = document.getElementById("files").files[i];
-				alert(fileInfo.name);
-				/* alert("("+ fileInfo.size +"byte)"); */
-			}
-			
+			var fileInfo = document.getElementById("files").files;
 			var imgPath = $(this)[0].value;
 			var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
 			var image_area = $("#imagesArea");		
 			var upload_area = $("#imgUpload");
+			var infoText;
+			var fileName = new Array();
+			var fileSize = new Array();
 			upload_area.hide();
 			if (extn == "gif" || extn == "png" || extn == "jpg"	|| extn == "jpeg") {
 				if (typeof (FileReader) != "undefined") {
 
 					//loop for each file selected for uploaded.
 					for (var i = 0; i < countFiles; i++) {
-
+						fileName[i] = fileInfo[i].name;
+						fileSize[i] = fileInfo[i].size;
+						
 						var reader = new FileReader();
 						reader.onload = function(e) {
-							var htmlCode = "<img src='"+ e.target.result + "' class='thumb-image' />";
-							image_area.append(htmlCode);
+							var htmlCode = "<img src='"+ e.target.result + "' class='thumb-image' /></br>";
+							infoText =  "<div style='text-align:center;'>파일명 : " + fileName[index] +"</br>파일크기 : "+ fileSize[index]+ "byte</div>";
+							image_area.append(htmlCode+infoText);
+							index++;
 						}
-
 						image_area.show();
 						reader.readAsDataURL($(this)[0].files[i]);
 					}
