@@ -152,7 +152,7 @@ img {
 						<img src="<%=request.getContextPath()%>${filePath[0] }" />
 						<div class="btnBox">
 							<button type="button" class="btnDown" id="btnDown" onclick="download();">Download</button>
-							<a href="/tif"><button type="button" class="btnDown" id="btnMain" onclick="download();" style="margin-right:1%;">Main</button></a>
+							<a href="/tif"><button type="button" class="btnDown" id="btnMain" style="margin-right:1%;">Main</button></a>
 						</div>
 						<form action="downloadZip" method="get" id="downloadForm">
 							<input id="filePath" type="hidden" value="<%=request.getContextPath()%>${filePath[0] }" name="filePath" />
